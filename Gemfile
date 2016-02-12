@@ -6,6 +6,13 @@ gem 'sinatra-activerecord'
 gem 'rake'
 
 group :development, :test do
-  gem 'pry-rails'
+  gem 'pry'
   gem 'pry-doc'
+  gem 'byebug'
+  gem 'pry-byebug'
+
+  gem 'rspec'
+  gem 'factory_girl'
+  gem 'rack-test'
+  gem 'database_cleaner'
 end

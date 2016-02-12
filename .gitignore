@@ -77,3 +77,5 @@ tramp
 # server auth directory
 /server/
 
+# Custom
+db/easymeal*

@@ -16,7 +16,12 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.3)
     builder (3.2.2)
+    byebug (8.2.1)
     coderay (1.1.0)
+    database_cleaner (1.5.1)
+    diff-lcs (1.2.5)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     i18n (0.7.0)
     json (1.8.3)
     method_source (0.8.2)
@@ -25,15 +30,30 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
     pry-doc (0.8.0)
       pry (~> 0.9)
       yard (~> 0.8)
-    pry-rails (0.3.4)
-      pry (>= 0.9.10)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     rake (10.5.0)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+    rspec-core (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.4)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -53,9 +73,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
+  database_cleaner
+  factory_girl
+  pry
+  pry-byebug
   pry-doc
-  pry-rails
+  rack-test
   rake
+  rspec
   sinatra
   sinatra-activerecord
   sqlite3
