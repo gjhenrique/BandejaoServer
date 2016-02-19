@@ -74,6 +74,16 @@ RSpec.describe Meal, type: :model do
     end
   end
 
+  context 'with dishes' do
+    it 'returns two dishes' do
+      meal = create(:meal, :one_dish)
+      meal.dishes << build(:dish, :rice)
+
+      meals = Meal.includes(:dishes).to_a
+      expect(meals.first.dishes.size).to eq(2)
+    end
+  end
+
   private
 
   def setup_meals(*traits)
