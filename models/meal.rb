@@ -21,8 +21,6 @@ class Meal < ActiveRecord::Base
     meals = where(university: university).by_week(date).by_year(date)
             .order('meal_date, period_id, updated_at DESC').includes(:dishes).to_a
 
-    meals.uniq do |meal|
-      [meal.period_id, meal.meal_date]
-    end
+    meals.uniq { |meal| [meal.period_id, meal.meal_date] }
   end
 end
