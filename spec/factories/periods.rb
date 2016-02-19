@@ -1,13 +1,11 @@
 FactoryGirl.define do
   factory :period do
-
     trait :lunch do
-      name "LUNCH"
+      name 'LUNCH'
     end
 
     trait :dinner do
-      name "DINNER"
+      name 'DINNER'
     end
   end
-
 end
