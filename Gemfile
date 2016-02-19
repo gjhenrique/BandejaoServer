@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sqlite3'
 gem 'sinatra-activerecord'
 gem 'rake'
+gem 'resque-scheduler'
 
 group :development, :test do
   gem 'pry'
