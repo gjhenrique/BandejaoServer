@@ -79,3 +79,6 @@ tramp
 
 # Custom
 db/easymeal*
+
+.sass-cache
+public/assets

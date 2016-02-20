@@ -1,0 +1,12 @@
+<!DOC>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel ="stylesheet" href="<%= stylesheet_path 'application' %>">
+</head>
+<body>
+  <% University.all.each do |un| %>
+    <%= un.name %>
+  <% end %>
+</body>
+</html>

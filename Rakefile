@@ -1,11 +1,15 @@
-require 'sinatra/activerecord/rake'
+ require 'sinatra/activerecord/rake'
 
 require 'resque/tasks'
 require 'resque/scheduler/tasks'
 require 'resque-scheduler'
 
+require 'sinatra/asset_pipeline/task'
 require 'erb'
+
 require './app'
+
+Sinatra::AssetPipeline::Task.define! Sinatra::Application
 
 namespace :resque do
 
