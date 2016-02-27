@@ -5,8 +5,33 @@
   <link rel ="stylesheet" href="<%= stylesheet_path 'application' %>">
 </head>
 <body>
-  <% University.all.each do |un| %>
-    <%= un.name %>
+
+  <ul id="universities">
+    <% University.all.each do |un| %>
+        <li><a href="/weekly/<%= un.name%>"><%= un.name %></a></li>
+    <% end %>
+  </div>
+
+  <% if @meals %>
+  <div id="meals">
+      <% setup_meals(@meals).each do |daily_meals| %>
+         <div data-meal-date="<%= daily_meals.first.meal_date %>">
+             <h3><%= daily_meals.first.meal_date %></h3>
+             <% daily_meals.each do |meal| %>
+                 <div class="meal">
+                   <% if meal.period != Period.both %>
+                     <h4><%= meal.period.name %></h4>
+                   <% end %>
+                   <ul>
+                   <% meal.dishes.each do |dish| %>
+                       <li><%= dish.name %></li>
+                   <% end %>
+                   </ul>
+                 </div>
+             <% end %>
+         </div>
+      <% end %>
+  </div>
   <% end %>
 </body>
 </html>

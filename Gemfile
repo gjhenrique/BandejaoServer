@@ -6,7 +6,6 @@ gem 'sqlite3'
 gem 'sinatra-activerecord'
 gem 'rake'
 gem 'resque-scheduler'
-
 gem 'sinatra-asset-pipeline'
 gem 'sass'
 
@@ -24,4 +23,5 @@ group :development, :test do
   gem 'factory_girl'
   gem 'rack-test'
   gem 'database_cleaner'
+  gem 'capybara'
 end

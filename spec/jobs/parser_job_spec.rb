@@ -1,5 +1,4 @@
 require File.expand_path '../../spec_helper.rb', __FILE__
-require File.expand_path '../../../jobs/parser_job.rb', __FILE__
 
 RSpec.describe ParserJob do
 
