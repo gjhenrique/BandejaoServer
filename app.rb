@@ -5,18 +5,22 @@ require 'sinatra'
 require 'sinatra/respond_with'
 require 'sinatra/activerecord'
 require 'sinatra/asset_pipeline'
+require 'sinatra/i18n'
 
 require 'rails-assets-purecss'
 
 Dir.glob('./models/*.rb') { |file| require file }
 Dir.glob('./jobs/*.rb') { |file| require file }
 Dir.glob('./controllers/*.rb') { |file| require file }
+Dir.glob('./parsers/*.rb') { |file| require file }
 
 configure do
   set :root, File.dirname(__FILE__)
 
-  register Sinatra::AssetPipeline
+  set :locales, Dir[File.join(settings.root, 'config', 'locales', '*.yml')]
+  register Sinatra::I18n
 
+  register Sinatra::AssetPipeline
   # Code based in https://github.com/rails-assets/rails-assets-sinatra
   if defined?(RailsAssets)
     RailsAssets.load_paths.each do |path|

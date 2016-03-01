@@ -1,4 +1,4 @@
- require 'sinatra/activerecord/rake'
+require 'sinatra/activerecord/rake'
 
 require 'resque/tasks'
 require 'resque/scheduler/tasks'

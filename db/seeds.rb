@@ -12,3 +12,6 @@ Period.where(name: "LUNCH").first_or_create
 Period.where(name: "DINNER").first_or_create
 # Lunch and Dinner
 Period.where(name: "BOTH").first_or_create
+
+University.where(name: "UFAC", long_name: "Universidade Federal do Acre", class_name: "Parser::UfacParser").first_or_create
+University.where(name: "UEL", long_name: "Universidade Estadual de Londrina", class_name: "Parser::UelParser").first_or_create

@@ -30,6 +30,11 @@ RSpec.configure do |c|
   c.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+
+    FactoryGirl.create(:period, :both)
+    FactoryGirl.create(:period, :breakfast)
+    FactoryGirl.create(:period, :lunch)
+    FactoryGirl.create(:period, :dinner)
   end
 
   c.around(:each) do |test|
