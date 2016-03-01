@@ -5,7 +5,8 @@ require 'sinatra'
 require 'sinatra/respond_with'
 require 'sinatra/activerecord'
 require 'sinatra/asset_pipeline'
-require 'rails-assets-skeleton'
+
+require 'rails-assets-purecss'
 
 Dir.glob('./models/*.rb') { |file| require file }
 Dir.glob('./jobs/*.rb') { |file| require file }

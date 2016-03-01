@@ -1,9 +1,9 @@
 helpers do
-  def setup_meals(weekly_meals)
-    grouped_meals = weekly_meals.group_by(&:meal_date).values
+  def group_meals_by_date(meals)
+    grouped_meals = meals.group_by(&:meal_date)
 
-    grouped_meals.each do |day_meals|
-      day_meals.sort! { |meal| meal.period.index }
+    grouped_meals.each do |meal_date, list_meals|
+      list_meals.sort! { |meal| meal.period.index }
     end
   end
 end

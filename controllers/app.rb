@@ -17,7 +17,7 @@ def meals_response(university)
       format.json { json @meals.to_json }
     else
       format.html { halt(404, erb(:index)) }
-      format.json { halt(404, {error: 'Univerisity not found' }.to_json) }
+      format.json { halt(404, { error: 'Univerisity not found' }.to_json) }
     end
   end
 end

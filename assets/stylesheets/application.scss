@@ -1,1 +1,22 @@
-//= require 'skeleton'
+//= require 'normalize'
+//= require 'pure_layout'
+
+body {
+    font-family: sans-serif;
+}
+
+html {
+    letter-spacing: 0.01em;
+}
+
+.meal li {
+    list-style: none;
+}
+
+.meal ul {
+    padding: 0;
+} 
+
+#meals {
+    text-align: center;
+}
