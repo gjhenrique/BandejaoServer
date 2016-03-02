@@ -1,31 +1,4 @@
-<!DOC>
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure.css">
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-  <link rel ="stylesheet" href="<%= stylesheet_path 'application' %>">
-</head>
-<body>
-   <a href="#menu" id="menuLink" class="menu-link">
-    <span></span>
-   </a>
-
-  <div id="layout">
-  <div id="menu">
-      <div class="pure-menu">
-          <a class="pure-menu-heading" href="/">EasyMeal</a>
-          <ul id="universities" class="pure-menu-list">
-            <% University.all.each do |un| %>
-               <li class="pure-menu-item"><a class="pure-menu-link" href="/weekly/<%= un.name%>"><%= un.name %></a></li>
-            <% end %>
-          </ul>
-      </div>
-  </div>
-
-  <% if @meals %>
-
-  <div id="main">
+<% if @meals %>
   <div class="content pure-g" id="meals">
       <% group_meals_by_date(@meals).each do |meal_date, daily_meals| %>
          <div class="pure-u-1 pure-u-md-1-2" data-meal-date="<%= meal_date %>">
@@ -45,8 +18,4 @@
          </div>
       <% end %>
   </div>
-  <% end %>
-  </div>
-  </div>
-</body>
-</html>
+<% end %>
