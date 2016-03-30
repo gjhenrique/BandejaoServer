@@ -1,21 +1,29 @@
-<% if @meals %>
+<div class="header">
+  <h1><%= @university.name %></h1>
+  <h2><%= @university.long_name %></h2>
+</div>
+
+<% if @meals.size > 0 %>
   <div class="content pure-g" id="meals">
       <% group_meals_by_date(@meals).each do |meal_date, daily_meals| %>
-         <div class="pure-u-1 pure-u-md-1-2" data-meal-date="<%= meal_date %>">
-             <h3><%= meal_date %></h3>
-             <% daily_meals.each do |meal| %>
-                 <div class="meal">
-                   <% if meal.period != Period.both %>
-                     <h4><%= meal.period.name %></h4>
-                   <% end %>
-                   <ul>
-                   <% meal.dishes.each do |dish| %>
-                       <li><%= dish.name %></li>
-                   <% end %>
-                   </ul>
-                 </div>
-             <% end %>
-         </div>
+        <div class="pure-u-1 pure-u-md-1-2" data-meal-date="<%= meal_date %>">
+            <h3><%= meal_date %></h3>
+            <% daily_meals.each do |meal| %>
+                <div class="meal">
+                  <% if meal.period != Period.both %>
+                    <h4><%= meal.period.name %></h4>
+                  <% end %>
+                  <ul>
+                  <% meal.dishes.each do |dish| %>
+                      <li><%= dish.name %></li>
+                  <% end %>
+                  </ul>
+                </div>
+            <% end %>
+        </div>
       <% end %>
   </div>
+<% else %>
+  <h1>There are no meals for this week. ='(</h1>
+  <h3>Maybe the site changed its format. If this is the case, click _here_</h3>
 <% end %>
