@@ -5,11 +5,12 @@ gem 'sinatra-contrib'
 gem 'sqlite3'
 gem 'sinatra-activerecord'
 gem 'rake'
-gem 'resque-scheduler'
+gem 'whenever'
 gem 'sinatra-asset-pipeline'
 gem 'sass'
 gem 'sinatra-i18n'
 gem 'nokogiri'
+
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-purecss'

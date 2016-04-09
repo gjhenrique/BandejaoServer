@@ -1,8 +1,11 @@
-# Calss the parser from the university and compares with persisted weekly meals
+# Calls the parser from the university and compares with persisted weekly meals
 class ParserJob
-  def self.perform(university_id)
 
-    university = University.find(university_id)
+  def self.parse_all
+    University.all.each { |university| parse_university university }
+  end
+
+  def self.parse_university(university)
     klass = university.class_name.constantize
     html_meals = klass.parse
 
@@ -21,7 +24,7 @@ class ParserJob
     end
   end
 
-  # Function here to don't monkey patch the array function
+  # Function in the ParserJob class to don't need to monkey patch the array function
   def self.meals_difference(meals, other_meals)
     meals_struct = meals.map(&:to_struct)
     other_meals_struct = other_meals.map(&:to_struct)

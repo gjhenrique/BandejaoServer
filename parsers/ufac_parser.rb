@@ -10,12 +10,6 @@ module Parser
 
     URL = 'http://www.ufac.br/proplan/cardapio-ru/#'
 
-    PERIODS = {
-      'Café da Manhã' => Period.breakfast,
-      'Almoço' => Period.lunch,
-      'Jantar' => Period.dinner
-    }
-
     def self.parse
       doc = Nokogiri::HTML(open(URL), nil, "UTF-8")
 
@@ -35,10 +29,17 @@ module Parser
     end
 
     def self.extract_meals(li_list, meal_date)
-      meal_condition = proc { |li| PERIODS.key? li.text.squish }
+
+      periods = {
+        'Café da Manhã' => Period.breakfast,
+        'Almoço' => Period.lunch,
+        'Jantar' => Period.dinner
+      }
+
+      meal_condition = proc { |li| periods.key? li.text.squish }
 
       meal_builder = proc do |li|
-        period = PERIODS[li.text.squish]
+        period = periods[li.text.squish]
         fail Exception, "Period cannot be null #{b[0]}" if period.nil?
         Meal.new(period: period, meal_date: meal_date)
       end

@@ -1,8 +1,0 @@
-<% University.all.each do |university| %>
-queue_parser_for_<%= university.name %>:
-    cron: "0 * * * *"
-    class: "ParserJob"
-    queue: parsers
-    args: <%= university.id %>
-    description: "Tries to find the meals of the week for <%= university.name %>" 
-<% end %>
