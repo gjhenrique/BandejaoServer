@@ -11,7 +11,6 @@ gem 'sass'
 gem 'sinatra-i18n'
 gem 'nokogiri'
 
-
 source 'https://rails-assets.org' do
   gem 'rails-assets-purecss'
 end
@@ -19,8 +18,8 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-doc'
-  gem 'byebug'
-  gem 'pry-byebug'
+  gem 'byebug', platform: :mri
+  gem 'pry-byebug', platform: :mri
 
   gem 'rspec'
   gem 'factory_girl'
