@@ -10,6 +10,7 @@ gem 'sinatra-asset-pipeline'
 gem 'sass'
 gem 'sinatra-i18n'
 gem 'nokogiri'
+gem 'puma'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-purecss'
