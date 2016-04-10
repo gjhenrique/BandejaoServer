@@ -2,6 +2,8 @@
 require 'open-uri'
 require 'nokogiri'
 
+require File.expand_path '../parser_helper.rb', __FILE__
+
 module Parser
   class UelParser
     extend ParserHelper
