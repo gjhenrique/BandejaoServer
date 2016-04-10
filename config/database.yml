@@ -22,4 +22,5 @@ test:
 
 production:
   <<: *default
-  database: db/easymeal-prod.sqlite3
+  # db-prod because Capistrano messes up with Sqlite database
+  database: db-prod/easymeal-prod.sqlite3
