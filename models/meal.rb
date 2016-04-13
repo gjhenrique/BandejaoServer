@@ -46,4 +46,8 @@ class Meal < ActiveRecord::Base
       dishes.map(&:name)
     )
   end
+
+  def as_json(_)
+    { date: meal_date, period: period.name, dishes: dishes.map(&:name) }
+  end
 end
