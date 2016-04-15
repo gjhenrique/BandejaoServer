@@ -14,7 +14,7 @@ def meals_response(university)
     if university
       @meals = Meal.weekly university
       format.html { erb :index }
-      format.json { json @meals.to_json }
+      format.json { @meals.to_json }
     else
       format.html { halt(404, erb(:university_not_found)) }
       format.json { halt(404, { error: 'Univerisity not found' }.to_json) }
