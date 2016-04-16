@@ -1,3 +1,7 @@
+after do
+  response.header['Content-Type'] += ';charset=utf-8'
+end
+
 get '/' do
   @university = University.random
   meals_response @university
