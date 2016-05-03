@@ -15,3 +15,7 @@ Period.where(name: "BOTH").first_or_create
 
 University.where(name: "UFAC", long_name: "Universidade Federal do Acre", class_name: "Parser::UfacParser").first_or_create
 University.where(name: "UEL", long_name: "Universidade Estadual de Londrina", class_name: "Parser::UelParser").first_or_create
+
+unicamp = University.where(name: "Unicamp", long_name: "Universidade de Campinas").first_or_create
+University.where(name: "COTUCA", long_name: "Campus COTUCA", university: unicamp).first_or_create
+University.where(name: "COTIL", long_name: "Campus COTIL", university: unicamp).first_or_create

@@ -8,7 +8,7 @@ get '/' do
 end
 
 get '/weekly/:university_name' do
-  @university = University.where(name: params[:university_name]).first
+  @university = University.by_name params[:university_name]
   meals_response @university
 end
 
@@ -21,7 +21,20 @@ def meals_response(university)
       format.json { @meals.to_json }
     else
       format.html { halt(404, erb(:university_not_found)) }
-      format.json { halt(404, { error: 'Univerisity not found' }.to_json) }
+      format.json { halt(404, { error: 'University not found' }.to_json) }
     end
   end
+end
+
+get '/university/weekly/:university_name' do
+  university = University.by_name params[:university_name]
+  universities = university.campus? ? university.universities : [university]
+  universities_dict = universities.map do |un|
+    {
+      name: un.name,
+      long_name: un.long_name,
+      meals: Meal.weekly(un)
+    }
+  end
+  json universities_dict
 end

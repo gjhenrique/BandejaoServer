@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118153701) do
+ActiveRecord::Schema.define(version: 20160503123319) do
 
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
@@ -43,8 +43,11 @@ ActiveRecord::Schema.define(version: 20151118153701) do
     t.string   "name"
     t.string   "long_name"
     t.string   "class_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "university_id"
   end
+
+  add_index "universities", ["university_id"], name: "index_universities_on_university_id"
 
 end

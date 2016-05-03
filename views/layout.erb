@@ -17,7 +17,11 @@
           <a class="pure-menu-heading" href="/">EasyMenu</a>
           <ul id="universities" class="pure-menu-list">
             <% University.all.each do |un| %>
-               <li class="pure-menu-item"><a class="pure-menu-link" href="/weekly/<%= un.name%>"><%= un.name %></a></li>
+                <% if un.campus? %>
+                    <%= un.name %>
+                <% else %>
+                    <li class="pure-menu-item"><a class="pure-menu-link" href="/weekly/<%= un.name%>"><%= un.name %></a></li>
+                <% end %>
             <% end %>
           </ul>
       </div>

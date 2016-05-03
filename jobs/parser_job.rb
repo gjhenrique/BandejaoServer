@@ -1,8 +1,7 @@
 # Calls the parser from the university and compares with persisted weekly meals
 class ParserJob
-
   def self.parse_all
-    University.all.each { |university| parse_university university }
+    University.all_campus.each { |university| parse_university university }
   end
 
   def self.parse_university(university)
