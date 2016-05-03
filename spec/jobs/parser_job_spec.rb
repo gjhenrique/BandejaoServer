@@ -55,6 +55,6 @@ RSpec.describe ParserJob do
     allow(parser_stub).to receive(:constantize).and_return(parser_stub)
     allow(parser_stub).to receive(:parse).and_return(meals)
 
-    ParserJob.perform university.id
+    ParserJob.parse_university university
   end
 end

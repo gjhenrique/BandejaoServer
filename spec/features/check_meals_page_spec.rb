@@ -70,10 +70,10 @@ RSpec.feature 'Homepage', type: :feature do
   scenario 'User returns right json to meals from university' do
     page.driver.header 'Accept', 'application/json'
     visit '/weekly/PU'
-    response = JSON.parse(page.body.gsub('\"', '"')[1..-2])
+    response = JSON.parse(page.body.gsub('\"', '"'))
 
     formatted_date = DateTime.now.monday.strftime('%Y-%m-%d')
-    expect(response.first['meal_date']).to eq(formatted_date)
+    expect(response.first['date']).to eq(formatted_date)
     # TODO: other expects
   end
 
