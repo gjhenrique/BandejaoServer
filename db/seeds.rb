@@ -9,7 +9,10 @@
 
 Period.where(name: "BREAKFAST").first_or_create
 Period.where(name: "LUNCH").first_or_create
+Period.where(name: "VEGETARIAN LUNCH").first_or_create
 Period.where(name: "DINNER").first_or_create
+Period.where(name: "VEGETARIAN DINNER").first_or_create
+
 # Lunch and Dinner
 Period.where(name: "BOTH").first_or_create
 
@@ -17,5 +20,5 @@ University.where(name: "UFAC", long_name: "Universidade Federal do Acre", class_
 University.where(name: "UEL", long_name: "Universidade Estadual de Londrina", class_name: "Parser::UelParser").first_or_create
 
 unicamp = University.where(name: "Unicamp", long_name: "Universidade de Campinas").first_or_create
-University.where(name: "COTUCA", long_name: "Campus COTUCA", university: unicamp).first_or_create
-University.where(name: "COTIL", long_name: "Campus COTIL", university: unicamp).first_or_create
+University.where(name: "COTUCA", long_name: "Campus COTUCA", class_name: "Parser::UnicampCotucaParser", university: unicamp).first_or_create
+University.where(name: "PFL", long_name: "Campus PFL", class_name: "Parser::UnicampPflParser", university: unicamp).first_or_create

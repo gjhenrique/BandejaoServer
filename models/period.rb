@@ -7,8 +7,16 @@ class Period < ActiveRecord::Base
     where(name: 'LUNCH').first
   end
 
+  def self.vegetarian_lunch
+    where(name: 'VEGETARIAN LUNCH').first
+  end
+
   def self.dinner
     where(name: 'DINNER').first
+  end
+
+  def self.vegetarian_dinner
+    where(name: 'VEGETARIAN DINNER').first
   end
 
   def self.both
@@ -21,10 +29,14 @@ class Period < ActiveRecord::Base
       -1
     when 'LUNCH'
       0
+    when 'VEGETARIAN LUNCH'
+      + 1
     when 'DINNER'
-      +1
-    when 'BOTH'
       +2
+    when 'VEGETARIAN DINNER'
+      +3
+    when 'BOTH'
+      +4
     end
   end
 end

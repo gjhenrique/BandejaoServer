@@ -1,19 +1,29 @@
 require File.expand_path '../../spec_helper.rb', __FILE__
 
-shared_examples 'a meal parser' do |university_name|
+shared_examples 'a meal parser' do |options|
+
+  university_name = options[:uni]
+  response_file = options[:file] || "#{university_name}.html"
+  parser_class = options[:class] || "#{university_name.camelize}Parser"
+  type = options[:parser_type] || :html
+
   let(:fixtures) do
     file = File.dirname(__FILE__) + "/fixtures/#{university_name}.yml"
     YAML.load(ERB.new(File.read(file)).result)
   end
 
   let(:list_meals) do
-    html_file = File.dirname(__FILE__) + "/files/#{university_name}.html"
-
-    doc = File.open(html_file) { |f| Nokogiri::HTML(f) }
-
-    klass = "Parser::#{university_name.camelize}Parser".constantize
-    allow(klass).to receive(:open).and_return(nil)
-    allow(Nokogiri).to receive(:HTML).and_return(doc)
+    file = File.dirname(__FILE__) + "/files/#{response_file}"
+    klass = "Parser::#{parser_class}".constantize
+    if type == :html
+      doc = File.open(file) { |f| Nokogiri::HTML(f) }
+      allow(klass).to receive(:open).and_return(nil)
+      allow(Nokogiri).to receive(:HTML).and_return(doc)
+    elsif type == :json
+      contents = File.open(file).read
+      allow(Net::HTTP).to receive(:post_form).and_return(contents)
+      allow(contents).to receive(:body).and_return(contents)
+    end
 
     klass.parse
   end
@@ -50,6 +60,7 @@ shared_examples 'a meal parser' do |university_name|
 end
 
 RSpec.describe :uel_parser, type: :model do
-  it_behaves_like 'a meal parser', 'uel'
-  it_behaves_like 'a meal parser', 'ufac'
+  # it_behaves_like 'a meal parser', uni: 'uel'
+  # it_behaves_like 'a meal parser', uni: 'ufac'
+  it_behaves_like 'a meal parser', uni: 'unicamp-cotuca', class: 'UnicampCotucaParser', parser_type: :json
 end
