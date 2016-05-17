@@ -18,7 +18,7 @@ class University < ActiveRecord::Base
     where('LOWER(name) = ?', name.downcase).first
   end
 
-  def self.all_campus
+  def self.find_campus
     where.not(id: University.select(:university_id).where.not(university_id: nil).uniq)
   end
 end
