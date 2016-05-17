@@ -1,3 +1,5 @@
+require 'gcm'
+
 # Calls the parser from the university and compares with persisted weekly meals
 class ParserJob
   def self.parse_all
@@ -21,6 +23,8 @@ class ParserJob
     ActiveRecord::Base.transaction do
       new_meals.map(&:save)
     end
+
+    send_gcm university.name
   end
 
   # Function in the ParserJob class to don't need to monkey patch the array function
@@ -28,5 +32,13 @@ class ParserJob
     meals_struct = meals.map(&:to_struct)
     other_meals_struct = other_meals.map(&:to_struct)
     (meals_struct - other_meals_struct).map(&:to_model)
+  end
+
+  def self.send_gcm(topic)
+    file_path = Sinatra::Application.settings.root + '/config/gcm.yml'
+    gcm_file = YAML.load(File.read(file_path))
+    gcm = GCM.new(gcm_file['key'])
+    gcm.send_with_notification_key("/topics/#{topic}",
+                                   data: { message: 'UPDATE' })
   end
 end

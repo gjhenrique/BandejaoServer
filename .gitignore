@@ -83,3 +83,6 @@ db-prod/
 
 .sass-cache
 public/assets
+
+# GCM Key
+config/gcm.yml

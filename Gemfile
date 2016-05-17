@@ -11,6 +11,7 @@ gem 'sass'
 gem 'sinatra-i18n'
 gem 'nokogiri'
 gem 'puma'
+gem 'gcm'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-purecss'

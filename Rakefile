@@ -9,3 +9,9 @@ namespace :parsers do
     ParserJob.parse_all
   end
 end
+
+namespace :gcm do
+  task :send_message, [:name] do |_, args|
+    ParserJob.send_gcm args[:name]
+  end
+end
