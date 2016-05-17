@@ -24,7 +24,13 @@ class ParserJob
       new_meals.map(&:save)
     end
 
-    send_gcm university.name
+    university_name = if university.is_campus?
+                        university.university.name
+                      else
+                        university.name
+                      end
+    send_gcm university_name
+    send_gcm 'all'
   end
 
   # Function in the ParserJob class to don't need to monkey patch the array function

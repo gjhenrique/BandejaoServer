@@ -27,8 +27,13 @@ def meals_response(university)
 end
 
 get '/university/weekly/:university_name' do
-  university = University.by_name params[:university_name]
-  universities = university.campus? ? university.universities : [university]
+  university_name = params[:university_name]
+  if university_name.downcase == 'all'
+    universities = University.all_campus
+  else
+    university = University.by_name university_name
+    universities = university.has_campus? ? university.universities : [university]
+  end
   universities_dict = universities.map do |un|
     {
       name: un.name,

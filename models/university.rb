@@ -6,8 +6,12 @@ class University < ActiveRecord::Base
     order('RANDOM()').first
   end
 
-  def campus?
+  def has_campus?
     universities.size > 0
+  end
+
+  def is_campus?
+    university != nil
   end
 
   def self.by_name(name)

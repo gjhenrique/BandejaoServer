@@ -17,7 +17,7 @@
           <a class="pure-menu-heading" href="/">EasyMenu</a>
           <ul id="universities" class="pure-menu-list">
             <% University.all.each do |un| %>
-                <% if un.campus? %>
+                <% if un.has_campus? %>
                     <%= un.name %>
                 <% else %>
                     <li class="pure-menu-item"><a class="pure-menu-link" href="/weekly/<%= un.name%>"><%= un.name %></a></li>
