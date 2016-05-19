@@ -10,19 +10,20 @@ class ParserJob
     log = ParserLogger.new(university)
 
     klass = university.class_name.constantize
+    parser = klass.new
 
     begin
-      html_meals = klass.parse
+      html_meals = parser.parse
     rescue StandardError => e
-      puts "Error during processing: #{e.inspect}"
+      puts "Error during processing parser: #{e.inspect}"
       puts "Backtrace:\n\t#{e.backtrace.join("\n\t")}"
-      # log.save_file klass.resource
+      log.save_file parser.resource
       return
     end
 
     if html_meals.nil?
       log.info 'Meals are nil'
-      # log.save_file klass.resource
+      log.save_file parser.resource
       return
     end
 
@@ -38,9 +39,8 @@ class ParserJob
       return
     end
 
-    log.info 'A'
     log.info "New Meals #{new_meals}"
-    #log.save_file klass.resource
+    log.save_file parser.resource
 
     ActiveRecord::Base.transaction do
       new_meals.map(&:save)
@@ -67,30 +67,7 @@ class ParserJob
     file_path = Sinatra::Application.settings.root + '/config/gcm.yml'
     gcm_file = YAML.load(File.read(file_path))
     gcm = GCM.new(gcm_file['key'])
-    #gcm.send_with_notification_key("/topics/#{topic}",
-    #                               data: { message: 'UPDATE' })
-  end
-end
-
-class ParserLogger
-
-  DIR_LOG = "#{Sinatra::Application.root}/log/parsers"
-  def initialize(university)
-    @university = university
-    FileUtils.mkdir_p(dir_LOG) unless File.directory?(DIR_LOG)
-    @logger = Logger.new("#{DIR_LOG}/#{university.name}.log")
-    @logger.level = Logger::INFO
-    @logger.formatter = proc do |severity, datetime, _, msg|
-      date_format = datetime.strftime '%Y-%m-%d %H:%M:%S'
-      "[#{date_format}] #{severity}: #{msg}\n"
-    end
-  end
-
-  def method_missing(m, *args, &_)
-    @logger.send(m, args[0])
-  end
-
-  # TODO: Implement this
-  def save_file(content)
+    gcm.send_with_notification_key("/topics/#{topic}",
+                                   data: { message: 'UPDATE' })
   end
 end

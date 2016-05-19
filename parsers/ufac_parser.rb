@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
-require 'open-uri'
-require 'nokogiri'
-
 require File.expand_path '../parser_helper.rb', __FILE__
+require File.expand_path '../fetcher.rb', __FILE__
 
 module Parser
   class UfacParser
-    extend ParserHelper
+    include ParserHelper
+    include Fetcher
 
     URL = 'http://www.ufac.br/proplan/cardapio-ru/#'
 
-    def self.parse
-      doc = Nokogiri::HTML(open(URL), nil, "UTF-8")
+    def parse
+      doc = fetch_html URL
 
       doc.css("ul.nav.nav-tabs li a").flat_map do |a|
         meal_date = extract_date a.text
@@ -21,15 +20,14 @@ module Parser
       end
     end
 
-    def self.extract_date(element)
+    def extract_date(element)
       date = element.split(" de ")
       index =  I18n.t("date.month_names", locale: "pt-BR").find_index(date[1])
       date[1] = I18n.t("date.month_names", locale: "en")[index]
       DateTime.strptime(date.join("/"), "%d/%B/%Y")
     end
 
-    def self.extract_meals(li_list, meal_date)
-
+    def extract_meals(li_list, meal_date)
       periods = {
         'Café da Manhã' => Period.breakfast,
         'Almoço' => Period.lunch,

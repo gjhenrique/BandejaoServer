@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-require 'net/http'
-
-require File.expand_path '../parser_helper.rb', __FILE__
+require File.expand_path '../fetcher.rb', __FILE__
 
 module Parser
   class Unicamp
-    def self.translate_period(period_name)
+    include Fetcher
+
+    def translate_period(period_name)
       period_name = period_name.upcase
       if period_name == 'JANTAR'
         Period.dinner
@@ -19,20 +19,13 @@ module Parser
       end
     end
 
-    def self.request_json(url)
-      post_data = Net::HTTP.post_form(URI.parse(url), {})
-      # Sometimes the server returned an empty body
-      return nil if post_data.body.empty?
-
-      JSON.parse post_data.body
-    end
   end
 
   class UnicampCotucaParser < Unicamp
     URL = 'https://www1.sistemas.unicamp.br/Mobile/CardapioPrefeituraCampinasJSON'
 
-    def self.parse
-      response = request_json URL
+    def parse
+      response = fetch_json URL
 
       response['CARDAPIO'].map do |meal_json|
         meal = Meal.new
@@ -53,8 +46,8 @@ module Parser
   class UnicampPflParser < Unicamp
     URL = 'https://www1.sistemas.unicamp.br/Mobile/CardapioPFL'
 
-    def self.parse
-      response = request_json URL
+    def parse
+      response = fetch_json URL
       return if response.key? 'erro'
       meals_response = response['cardapio'].nil? ? response : response['cardapio']
 
@@ -72,7 +65,7 @@ module Parser
     end
 
     # CONVERT 10 DE MAIO DE 2016 to DateTime(2016-05-10)
-    def self.extract_date(raw_date)
+    def extract_date(raw_date)
       date_list = raw_date.split(' DE ')
       index = I18n.t('date.month_names', locale: 'pt-BR')
               .map { |month| month.upcase unless month.nil? }

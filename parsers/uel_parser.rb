@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-require 'open-uri'
-require 'nokogiri'
-
 require File.expand_path '../parser_helper.rb', __FILE__
+require File.expand_path '../fetcher.rb', __FILE__
 
 module Parser
   class UelParser
-    extend ParserHelper
+    include ParserHelper
+    include Fetcher
 
     URL = 'http://www.uel.br/ru/pages/cardapio.php'
 
@@ -26,8 +25,8 @@ module Parser
     # <td><p>VEGETARIAN OPTION:</p><p>Lettuce</p>
     # <!-- 2nd dish of tuesday. We have to consider the vegetarian option as one dish-->
     # </tr>
-    def self.parse
-      doc = Nokogiri::HTML(open(URL), nil, 'ISO-8859-1')
+    def parse
+      doc = fetch_html URL, encoding: 'ISO-8859-1'
 
       odd_meals = parse_meals(doc, '#conteudoCT table tr td:nth-child(odd)')
       even_meals = parse_meals(doc, '#conteudoCT table tr td:nth-child(even)')
@@ -35,7 +34,7 @@ module Parser
       odd_meals.concat(even_meals).sort_by(&:meal_date)
     end
 
-    def self.parse_meals(doc, selector)
+    def parse_meals(doc, selector)
       td_list = doc.css(selector)
 
       meals_list = chunk_by_condition(td_list) { |td| td.text.squish.include? 'Feira' }
@@ -72,7 +71,7 @@ module Parser
       build_meals_from_list(meals_list, meal_builder: meal_builder, dish_builder: dish_builder)
     end
 
-    def self.filter_text(text)
+    def filter_text(text)
       text.squish.gsub(WEIRD_CHAR, '')
     end
   end

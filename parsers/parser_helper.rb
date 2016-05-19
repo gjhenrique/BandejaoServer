@@ -1,6 +1,5 @@
 module Parser
   module ParserHelper
-
     def build_meal(list, procs = {})
       meals_dishes = chunk_by_condition(list, &procs[:meal_condition])
       build_meals_from_list(meals_dishes, procs)

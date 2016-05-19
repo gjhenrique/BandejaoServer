@@ -8,6 +8,11 @@ namespace :parsers do
   task :parse_universities do
     ParserJob.parse_all
   end
+
+  task :parse_university, [:name] do |_, args|
+    university = University.by_name args[:name]
+    ParserJob.parse_university university
+  end
 end
 
 namespace :gcm do
