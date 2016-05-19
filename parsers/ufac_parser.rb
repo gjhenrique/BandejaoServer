@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-require File.expand_path '../parser_helper.rb', __FILE__
-require File.expand_path '../fetcher.rb', __FILE__
-
 module Parser
   class UfacParser
     include ParserHelper

@@ -12,7 +12,7 @@ require 'rails-assets-purecss'
 Dir.glob('./models/*.rb') { |file| require file }
 Dir.glob('./jobs/*.rb') { |file| require file }
 Dir.glob('./controllers/*.rb') { |file| require file }
-Dir.glob('./parsers/*.rb') { |file| require file }
+require './parsers/parsers'
 
 configure do
   set :root, File.dirname(__FILE__)

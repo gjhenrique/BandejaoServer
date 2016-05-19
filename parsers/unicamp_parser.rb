@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-require File.expand_path '../fetcher.rb', __FILE__
-
 module Parser
   class Unicamp
     include Fetcher
