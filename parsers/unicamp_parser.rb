@@ -55,7 +55,8 @@ module Parser
 
     def self.parse
       response = request_json URL
-      meals_response = response['cardapio']
+      return if response.key? 'erro'
+      meals_response = response['cardapio'].nil? ? response : response['cardapio']
 
       meals_response.map do |meal_info|
         meal_filtered = meal_info.split(%r{<[BRbr]+\s+\/>})

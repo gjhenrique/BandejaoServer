@@ -86,3 +86,5 @@ public/assets
 
 # GCM Key
 config/gcm.yml
+
+log/

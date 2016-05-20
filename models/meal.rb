@@ -50,4 +50,9 @@ class Meal < ActiveRecord::Base
   def as_json(_)
     { date: meal_date, period: period.name, dishes: dishes.map(&:name) }
   end
+
+  def to_s
+    "Period: #{period} <-> meal_date: #{meal_date.strftime('#%Y-%M-%d')} " \
+      "<-> #{dishes.map(&:name) unless dishes.nil?}"
+  end
 end
