@@ -34,7 +34,6 @@ class Meal < ActiveRecord::Base
   def self.weekly(university, date = DateTime.now)
     meals = where(university: university).by_week(date).by_year(date)
             .order('meal_date, period_id, updated_at DESC').includes(:dishes).to_a
-
     meals.uniq { |meal| [meal.period_id, meal.meal_date] }
   end
 

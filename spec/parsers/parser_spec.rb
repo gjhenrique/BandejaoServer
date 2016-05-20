@@ -15,9 +15,10 @@ shared_examples 'a meal parser' do |options|
   let(:list_meals) do
     file = File.dirname(__FILE__) + "/files/#{response_file}"
     klass = "Parser::#{parser_class}".constantize
+    parser = klass.new
     if type == :html
       doc = File.open(file) { |f| Nokogiri::HTML(f) }
-      allow(klass).to receive(:open).and_return(nil)
+      allow(parser).to receive(:open).and_return(nil)
       allow(Nokogiri).to receive(:HTML).and_return(doc)
     elsif type == :json
       contents = File.open(file).read
@@ -25,7 +26,7 @@ shared_examples 'a meal parser' do |options|
       allow(contents).to receive(:body).and_return(contents)
     end
 
-    klass.parse
+    parser.parse
   end
 
   it 'has the same size' do
@@ -60,7 +61,6 @@ shared_examples 'a meal parser' do |options|
 end
 
 RSpec.describe :uel_parser, type: :model do
-  # it_behaves_like 'a meal parser', uni: 'uel'
-  # it_behaves_like 'a meal parser', uni: 'ufac'
-  it_behaves_like 'a meal parser', uni: 'unicamp-cotuca', class: 'UnicampCotucaParser', parser_type: :json
+  it_behaves_like 'a meal parser', uni: 'uel'
+  it_behaves_like 'a meal parser', uni: 'ufac'
 end

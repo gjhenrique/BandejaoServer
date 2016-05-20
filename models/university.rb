@@ -14,6 +14,14 @@ class University < ActiveRecord::Base
     university != nil
   end
 
+  def main_name
+    if university.is_campus?
+      university.university.name
+    else
+      university.name
+    end
+  end
+
   def self.by_name(name)
     where('LOWER(name) = ?', name.downcase).first
   end

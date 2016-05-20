@@ -1,72 +1,34 @@
 require 'gcm'
 
-# Calls the parser from the university and compares with persisted weekly meals
 class ParserJob
   def self.parse_all
     University.find_campus.each { |university| parse_university university }
   end
 
   def self.parse_university(university)
-    log = ParserLogger.new(university)
-
     klass = university.class_name.constantize
     parser = klass.new
+    log = ParserLogger.new(university)
 
-    begin
-      html_meals = parser.parse
-    rescue StandardError => e
-      puts "Error during processing parser: #{e.inspect}"
-      puts "Backtrace:\n\t#{e.backtrace.join("\n\t")}"
-      log.save_file parser.resource
-      return
-    end
+    synchronizer = MealSynchronizer.new university, parser, log
+    new_meals = synchronizer.sync_meals
+    return if new_meals.nil?
 
-    if html_meals.nil?
-      log.info 'Meals are nil'
-      log.save_file parser.resource
-      return
-    end
-
-    # Gettings meals only for this week
-    html_meals.select! { |meal| (meal.meal_date + 1).cweek == (DateTime.now + 1).cweek }
-    html_meals.each { |m| m.university = university }
-
-    weekly_meals = Meal.weekly(university)
-    new_meals = meals_difference(html_meals, weekly_meals)
-
-    if new_meals.empty?
-      log.info 'No difference'
-      return
-    end
-
-    log.info "New Meals #{new_meals}"
-    log.save_file parser.resource
-
+    # Persisting the new meals into the database
     ActiveRecord::Base.transaction do
       new_meals.map(&:save)
     end
 
-    log.info "Gcm to university #{university.name}"
-    university_name = if university.is_campus?
-                        university.university.name
-                      else
-                        university.name
-                      end
-    send_gcm university_name
-    send_gcm 'All'
+    # Sending gcm
+    send_gcm_request university.main_name, log
+    send_gcm_request 'All', log
   end
 
-  # Function in the ParserJob class to don't need to monkey patch the array function
-  def self.meals_difference(meals, other_meals)
-    meals_struct = meals.map(&:to_struct)
-    other_meals_struct = other_meals.map(&:to_struct)
-    (meals_struct - other_meals_struct).map(&:to_model)
-  end
-
-  def self.send_gcm(topic)
+  def self.send_gcm_request(topic)
     gcm_key = ENV['GCM_KEY']
     gcm = GCM.new(gcm_key)
-    gcm.send_with_notification_key("/topics/#{topic}",
-                                   data: { message: 'UPDATE' })
+    response_gcm = gcm.send_with_notification_key("/topics/#{topic}",
+                                                  data: { message: 'UPDATE' })
+    logger.info response_gcm
   end
 end
