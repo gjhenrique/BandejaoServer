@@ -12,6 +12,7 @@ gem 'sinatra-i18n'
 gem 'nokogiri'
 gem 'puma'
 gem 'gcm'
+gem 'dotenv'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-purecss'

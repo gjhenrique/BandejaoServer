@@ -8,6 +8,7 @@ require 'sinatra/asset_pipeline'
 require 'sinatra/i18n'
 
 require 'rails-assets-purecss'
+require 'dotenv'
 
 Dir.glob('./models/*.rb') { |file| require file }
 Dir.glob('./jobs/*.rb') { |file| require file }
@@ -19,6 +20,8 @@ configure do
 
   set :locales, Dir[File.join(settings.root, 'config', 'locales', '*.yml')]
   register Sinatra::I18n
+
+  Dotenv.load
 
   register Sinatra::AssetPipeline
   # Code based in https://github.com/rails-assets/rails-assets-sinatra

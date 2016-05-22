@@ -64,9 +64,8 @@ class ParserJob
   end
 
   def self.send_gcm(topic)
-    file_path = Sinatra::Application.settings.root + '/config/gcm.yml'
-    gcm_file = YAML.load(File.read(file_path))
-    gcm = GCM.new(gcm_file['key'])
+    gcm_key = ENV['GCM_KEY']
+    gcm = GCM.new(gcm_key)
     gcm.send_with_notification_key("/topics/#{topic}",
                                    data: { message: 'UPDATE' })
   end

@@ -19,4 +19,8 @@ namespace :gcm do
   task :send_message, [:name] do |_, args|
     ParserJob.send_gcm args[:name]
   end
+
+  task :test_key do
+    puts ENV['GCM_KEY']
+  end
 end
