@@ -11,7 +11,7 @@ class MealSynchronizer
     rescue StandardError => e
       puts "Parser error: #{e.inspect}"
       puts "Backtrace:\n\t#{e.backtrace.join("\n\t")}"
-      log.save_file @parser.resource
+      @log.save_file @parser.resource
       return
     end
 

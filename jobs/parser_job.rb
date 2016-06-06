@@ -24,7 +24,7 @@ class ParserJob
     send_gcm_request 'All', log
   end
 
-  def self.send_gcm_request(topic)
+  def self.send_gcm_request(topic, logger)
     gcm_key = ENV['GCM_KEY']
     gcm = GCM.new(gcm_key)
     response_gcm = gcm.send_with_notification_key("/topics/#{topic}",
