@@ -32,7 +32,7 @@ get '/university/weekly/:university_name' do
     universities = University.find_campus
   else
     university = University.by_name university_name
-    universities = university.has_campus? ? university.universities : [university]
+    universities = university.campus? ? university.universities : [university]
   end
   universities_dict = universities.map do |un|
     {

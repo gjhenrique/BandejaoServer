@@ -6,19 +6,15 @@ class University < ActiveRecord::Base
     order('RANDOM()').first
   end
 
-  def has_campus?
+  def campus?
     universities.size > 0
   end
 
-  def is_campus?
-    university != nil
-  end
-
   def main_name
-    if university.is_campus?
-      university.university.name
-    else
+    if university.nil?
       university.name
+    else
+      university.university.name
     end
   end
 
