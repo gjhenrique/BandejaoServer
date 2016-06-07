@@ -39,4 +39,8 @@ class Period < ActiveRecord::Base
       +4
     end
   end
+
+  def to_s
+    name
+  end
 end
