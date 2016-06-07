@@ -22,3 +22,6 @@ University.where(name: "UEL", long_name: "Universidade Estadual de Londrina", cl
 unicamp = University.where(name: "Unicamp", long_name: "Universidade de Campinas").first_or_create
 University.where(name: "COTUCA", long_name: "Campus COTUCA", class_name: "Parser::UnicampCotucaParser", university: unicamp).first_or_create
 University.where(name: "PFL", long_name: "Campus PFL", class_name: "Parser::UnicampPflParser", university: unicamp).first_or_create
+
+
+University.where(name: "UEM", long_name: "Universidade Estadual de Maringá", class_name: "Parser::UemParser").first_or_create
