@@ -7,7 +7,10 @@ require 'sinatra/activerecord'
 require 'sinatra/asset_pipeline'
 require 'sinatra/i18n'
 
-require 'rails-assets-purecss'
+require 'rails-assets-pure'
+require 'rails-assets-css-hamburgers'
+require 'font-awesome-sass'
+
 require 'dotenv'
 
 Dir.glob('./models/*.rb') { |file| require file }

@@ -1,29 +1,91 @@
-<div class="header">
-  <h1><%= @university.name %></h1>
-  <h2><%= @university.long_name %></h2>
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">Bring mobility to your university cafeteria</h1>
+        <p class="slash-subhead">Changing the way you check your weekly menu</p>
+    </div>
 </div>
 
-<% if @meals.size > 0 %>
-  <div class="content pure-g" id="meals">
-      <% group_meals_by_date(@meals).each do |meal_date, daily_meals| %>
-        <div class="pure-u-1 pure-u-md-1-2" data-meal-date="<%= meal_date %>">
-            <h3><%= meal_date %></h3>
-            <% daily_meals.each do |meal| %>
-                <div class="meal">
-                  <% if meal.period != Period.both %>
-                    <h4><%= meal.period.name %></h4>
-                  <% end %>
-                  <ul>
-                  <% meal.dishes.each do |dish| %>
-                      <li><%= dish.name %></li>
-                  <% end %>
-                  </ul>
-                </div>
-            <% end %>
+<div class="content-wrapper">
+    <section class="content container pure-g">
+        <h2 class="pure-u-1 is-center">Features</h2>
+        <div class="feature l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <i class="fa fa-rocket"></i>
+            <h3 class="content-subhead">
+                    Modular
+                </h3>
+            <p>
+                Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+            </p>
         </div>
-      <% end %>
-  </div>
-<% else %>
-  <h1>There are no meals for this week. ='(</h1>
-  <h3>Maybe the site changed its format. If this is the case, click _here_</h3>
-<% end %>
+        <div class="feature l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <i class="fa fa-mobile"></i>
+            <h3 class="content-subhead">
+                    Offline
+                </h3>
+            <p>
+                Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+            </p>
+        </div>
+        <div class="feature l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <i class="fa fa-th-large"></i>
+            <h3 class="content-subhead">
+                    Modular
+                </h3>
+            <p>
+                Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+            </p>
+        </div>
+    </section>
+
+    <section class="content container pure-g">
+        <h2 class="pure-u-1 is-center">How it works</h2>
+        <div class="description l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <p><strong>1.</strong> our robots visit the cafeteria website</p>
+            <img src="<%= image_path('robot.svg') %>" />
+        </div>
+
+        <div class="description l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <p><strong>2.</strong> If there are new meals...</p>
+            <img src="<%= image_path('robot.svg') %>" />
+        </div>
+
+        <div class="description l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+            <p><strong>3.</strong> We notify our users</p>
+            <img src="<%= image_path('robot.svg') %>" />
+        </div>
+    </section>
+
+    <section class="contact pure-g contact">
+        <div class="container">
+            <h2 class="pure-u-1 is-center">Contact Us</h2>
+
+            <p class="pure-u-1 is-center">Send us information about your university. No ads and no spam</p>
+            <form class="pure-form">
+                <fieldset>
+                    <div class="pure-u-md-1-2">
+                        <label for="name">Your Name</label>
+                        <input id="name" type="text" placeholder="Your Name">
+                    </div>
+
+                    <div class="pure-u-md-1-2">
+                        <label for="email">Your Email</label>
+                        <input id="email" type="email" placeholder="Your Email">
+                    </div>
+
+                    <div class="pure-u-1">
+                        <label for="description">Description</label>
+                        <input id="description" type="text" placeholder="Information about your university">
+                    </div>
+
+                    <div class="pure-u-1 is-center">
+                        <button type="submit" class="pure-button">Send</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <div class="footer l-box is-center">
+        Footer
+    </div>
+</div>

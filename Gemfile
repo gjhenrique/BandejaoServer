@@ -14,8 +14,12 @@ gem 'puma'
 gem 'gcm'
 gem 'dotenv'
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-purecss'
+group :assets do
+  source 'https://rails-assets.org' do
+    gem 'rails-assets-pure'
+    gem 'rails-assets-css-hamburgers'
+  end
+  gem 'font-awesome-sass', '~> 4.6.2'
 end
 
 group :development, :test do
