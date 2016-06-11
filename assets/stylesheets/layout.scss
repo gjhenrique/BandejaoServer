@@ -12,7 +12,7 @@
 
 body {
     line-height: 1.7em;
-    color: #7f8c8d;
+    color: #444;
     font-size: 13px;
     font-family: Lato, serial-serif;
 }
@@ -343,6 +343,19 @@ a.pure-button-primary {
     float: right;
 }
 
+#navigation li ul {
+    display:none;
+}
+
+#navigation li:hover ul {
+    position: absolute;
+    display:block;
+    background-color: white;
+    padding: 10px;
+    border: 10px;
+    text-align: center;
+}
+
 #menu-button {
     position: relative;
     float: right;
@@ -357,20 +370,28 @@ a.pure-button-primary {
     padding: 0;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+    #navigation li:hover ul {
+        position: static;
+        display: block;
+    }
+
     #menu-button {
         display: inline-block;
     }
+
     .home-menu nav {
         display: none;
-        float: inherit;
+        float: none;
     }
+
     .home-menu nav ul {
-        max-height: 0em;
+        max-height: auto;
     }
 
     .home-menu nav ul li.pure-menu-item {
         display: block;
+        position: static;
     }
 
     .home-menu nav.is-active {
@@ -394,6 +415,7 @@ section {
     color: #dd514c;
     text-align: center;
 }
+
 .feature p {
     color: #444;
 }

@@ -1,1 +1,1 @@
-//= require 'menu'
+//= require menu
