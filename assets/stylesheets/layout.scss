@@ -294,6 +294,10 @@ a.pure-button-primary {
 
 /* Custom CSS */
 
+.section-title {
+    text-transform: uppercase;
+}
+
 .container {
     padding-right: 15px;
     padding-left: 15px;
@@ -347,12 +351,26 @@ a.pure-button-primary {
     display:none;
 }
 
+#navigation li i {
+    margin-left: 5px;
+}
+
+#navigation li:hover i {
+    padding-left: 10px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    transition: all 0.7s ease;
+}
+
 #navigation li:hover ul {
     position: absolute;
     display:block;
     background-color: white;
     padding: 10px;
-    border: 10px;
+    width: 100%;
     text-align: center;
 }
 
@@ -420,6 +438,10 @@ section {
     color: #444;
 }
 
+.feature-subhead {
+    text-transform: uppercase;
+}
+
 .feature i {
     display: block;
     font-size: 60px;
@@ -448,20 +470,35 @@ section {
     color: white;
 }
 
+.contact input {
+    color: #444;
+}
+
 .contact form {
     width: 70%;
     margin: 0 auto;
 }
 
-.contact form input[type=text] {
-    width: 90%;
-    display: block;
+.contact form .text-input {
+    margin-left: 5%;
+    width: 47.5%;
 }
 
-.contact form  input[type=text]#description {
-    width: 100%;
+.contact form .text-input:first-child {
+    margin-left: 0;
 }
 
 .contact form {
-    text-align: center;
+    text-align: left;
 }
+
+@media (max-width: 600px) {
+    .contact form .text-input {
+        width: 100%;
+        margin-left:0;
+    }
+}
+
+
+
+
