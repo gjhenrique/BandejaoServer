@@ -16,6 +16,10 @@ module Parser
       meals.zip dishes
     end
 
+    def group_by_condition(list, &meal_condition)
+
+    end
+
     def build_meals_from_list(list_meals, procs = {})
       fail ArgumentError, 'dish_builder proc cannot be nil' if procs[:dish_builder].nil?
       fail ArgumentError, 'meal_builder proc cannot be nil' if procs[:meal_builder].nil?

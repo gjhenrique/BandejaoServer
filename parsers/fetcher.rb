@@ -1,10 +1,16 @@
 require 'net/http'
 require 'open-uri'
 require 'nokogiri'
+require 'pdftohtmlr'
 
 module Parser
   module Fetcher
     attr_reader :resource
+
+    def fetch_pdf_to_document(url)
+      file = PDFToHTMLR::PdfFileUrl.new(url)
+      @resource = file.convert_to_document
+    end
 
     def fetch_html(url, options = {})
       options[:encoding] ||= 'UTF-8'
