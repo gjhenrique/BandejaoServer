@@ -4,7 +4,7 @@ module Parser
     include ParserHelper
     include Fetcher
 
-    URL = 'http://www.ufac.br/proplan/cardapio-ru/#'
+    URL = 'http://proplan.ufac.br/cardapio-ru/'
 
     def parse
       doc = fetch_html URL
