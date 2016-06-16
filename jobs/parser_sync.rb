@@ -9,8 +9,8 @@ class MealSynchronizer
     begin
       html_meals = @parser.parse
     rescue StandardError => e
-      puts "Parser error: #{e.inspect}"
-      puts "Backtrace:\n\t#{e.backtrace.join("\n\t")}"
+      @log.error "Parser error: #{e.inspect}"
+      @log.error "Backtrace:\n\t#{e.backtrace.join("\n\t")}"
       @log.save_file @parser.resource
       return
     end
