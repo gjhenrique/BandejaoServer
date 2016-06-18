@@ -69,7 +69,6 @@ body .pure-g [class*="pure-u"] {
 
 .pure-menu.pure-menu-fixed {
     border-bottom: none;
-    z-index: 4;
 }
 
 .home-menu .pure-menu-heading {
@@ -94,48 +93,54 @@ body .pure-g [class*="pure-u"] {
     color: #AECFE5;
 }
 
-
 .splash-container {
-    z-index: 1;
-    overflow: hidden;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), image-url('background.jpg') no-repeat center center;
     /* The following styles are required for the "scroll-over" effect */
     width: 100%;
-    top: 0;
-    left: 0;
-    height: 700px;
     padding-top: 80px;
-    position: fixed; 
 }
 
-.splash-head-container {
-    
-}
 .splash {
-    /* absolute center .splash within .splash-container */
-    width: 50%;
     margin: auto;
     position: relative;
     text-align: center;
+    max-width: 1170px;
 }
 
-.splash img {
-    width: 100%;
+.screenshot {
+    margin: 50px auto 0 auto;
+}
+
+.splash .screenshot img {
+    width: 375px;
+    margin-bottom: 30px;
+}
+
+.splash-title * {
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.splash-title {
+    margin-top: 25%;
 }
 
 .splash-head {
-    font-weight: bold;
-    color: white;
-    font-weight: 100;
+    font-size: 2em;
+    font-weight: 700;
+    margin-top:50px;
     text-transform: uppercase;
 }
 
+.splash-subhead {
+    font-weight: 100;
+}
+
 .content-wrapper {
-    position: absolute;
-    top: 700px;
+    /*position: absolute;
+    top: 700px;*/
     width: 100%;
     min-height: 12%;
-    z-index: 2;
     background: white;
 }
 
@@ -145,6 +150,7 @@ body .pure-g [class*="pure-u"] {
     letter-spacing: 0.1em;
     margin: 2em 0 1em;
 }
+
 .content-head-ribbon {
     color: white;
 }
@@ -157,7 +163,6 @@ body .pure-g [class*="pure-u"] {
 .footer {
     background: #111;
 }
-
 
 /* TABLET */
 @media (min-width: 48em) {
@@ -175,17 +180,12 @@ body .pure-g [class*="pure-u"] {
     }
 }
 
-
-/* DESKTOP */
 @media (min-width: 78em) {
-    /* We increase the header font size even more */
-    .splash-head {
-        font-size: 30px;
+    .screenshot {
+        margin: 20px auto 0 auto;
     }
 }
 
-
-/* Custom CSS */
 .section-title {
     text-transform: uppercase;
 }
@@ -280,40 +280,51 @@ body .pure-g [class*="pure-u"] {
     padding: 0;
 }
 
+@media (max-width: 767px) {
+    .splash-title {
+        margin-top: 0;
+    }
+}
+
 @media (max-width: 600px) {
+    .splash .screenshot img {
+        width: 80%;
+    }
+    .splash .screenshot {
+        margin: 20px auto 0 auto;
+    }
     #navigation li:hover ul {
         position: static;
         display: block;
     }
-
     #menu-button {
         display: inline-block;
     }
-
     .home-menu nav {
         display: none;
         float: none;
     }
-
     .home-menu nav ul {
         max-height: auto;
     }
-
     .home-menu nav ul li.pure-menu-item {
         display: block;
         position: static;
     }
-
     .home-menu nav.is-active {
         display:block;
     }
-
     .home-menu nav.is-active + ul {
         -webkit-transition: max-height .4s;
         -moz-transition: max-height .4s;
         -o-transition: max-height .4s;
         -ms-transition: max-height .4s;
         transition: max-height .4s;
+    }
+
+    .contact form .text-input {
+        width: 100%;
+        margin-left:0;
     }
 }
 
@@ -382,11 +393,4 @@ section {
 
 .contact form {
     text-align: left;
-}
-
-@media (max-width: 600px) {
-    .contact form .text-input {
-        width: 100%;
-        margin-left:0;
-    }
 }
