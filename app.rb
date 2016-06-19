@@ -6,6 +6,7 @@ require 'sinatra/respond_with'
 require 'sinatra/activerecord'
 require 'sinatra/asset_pipeline'
 require 'sinatra/i18n'
+require 'sinatra/capture'
 
 require 'rails-assets-pure'
 require 'rails-assets-css-hamburgers'
@@ -16,6 +17,8 @@ require 'dotenv'
 Dir.glob('./models/*.rb') { |file| require file }
 Dir.glob('./jobs/*.rb') { |file| require file }
 Dir.glob('./controllers/*.rb') { |file| require file }
+
+require './views/view_helper.rb'
 require './parsers/parsers'
 
 configure do

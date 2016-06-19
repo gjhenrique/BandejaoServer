@@ -35,17 +35,15 @@ class Meal < ActiveRecord::Base
   scope :by_day, -> (date) { where('? = meal_date', date.strftime('%Y-%m-%d')) }
 
   def self.weekly(university, date = DateTime.now)
-    meals = where(university: university)
-            .by_week(date).by_year(date)
-            .order('meal_date, period_id, updated_at DESC')
-            .includes(:dishes).to_a
-    meals.uniq { |meal| [meal.period_id, meal.meal_date] }
+    by_week(date).by_year(date).filter_by_date(university, date)
   end
 
   def self.daily(university, date)
-    # TODO: Merge this code with weekly function
+    by_day(date).filter_by_date(university, date)
+  end
+
+  def self.filter_by_date(university, date)
     meals = where(university: university)
-            .by_day(date)
             .order('meal_date, period_id, updated_at DESC')
             .includes(:dishes).to_a
     meals.uniq { |meal| [meal.period_id, meal.meal_date] }

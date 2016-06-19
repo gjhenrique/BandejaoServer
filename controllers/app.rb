@@ -24,7 +24,7 @@ get '/daily/:university_name' do
   @university = University.random.where(university: @university).first if @university.has_campus?
 
   @date = if params[:day].nil?
-            DateTime.now - 2
+            DateTime.now
           else
             DateTime.strptime(params[:day], '%Y-%m-%d')
           end

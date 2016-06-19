@@ -452,7 +452,12 @@ html, body {
     color: #444;
 }
 
-.meals h3 {
-    display: inline-block;
+.meals .no-meals {
+    display: block;
+    margin-top: 50px;
+}
+
+.meals .no-meals h3 {
     margin: 0 30px;
+    display: inline-block;
 }
