@@ -36,39 +36,50 @@
 </head>
 
 <body>
-    <div class="header pure-menu pure-menu-horizontal pure-menu-fixed">
-        <div class="container home-menu">
-            <a class="pure-menu-heading" href="">
+    <div class="content-wrapper">
+        <header class="pure-menu pure-menu-horizontal pure-menu-fixed">
+            <div class="container home-menu">
+                <a class="pure-menu-heading" href="/">
                 <img id="logo" src="<%= image_path('logo.png') %>"></img>
                 <span class="heading-title">Bandejao</span>
             </a>
 
-            <button class="hamburger hamburger--collapse" id="menu-button" type="button">
-                <span class="hamburger-box">
+                <button class="hamburger hamburger--collapse" id="menu-button" type="button">
+                    <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
-                </span>
-            </button>
+                    </span>
+                </button>
 
-            <nav role="navigation" id="main-nav">
-                <ul id="navigation" class="pure-menu-list">
-                    <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-                    <li class="pure-menu-item">
-                        <span>Universities</span>
-                        <i class="fa fa-chevron-down"></i>
-                        <ul class="pure-menu-list">
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">UEL</a></li>
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">UEM</a></li>
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">UFAC</a></li>
-                        </ul>
-                    </li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Code</a></li>
-                </ul>
-            </nav>
+                <nav role="navigation" id="main-nav">
+                    <ul id="navigation" class="pure-menu-list">
+                        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+                        <li class="pure-menu-item">
+                            <span>Universities</span>
+                            <i class="fa fa-chevron-down"></i>
+                            <ul class="pure-menu-list">
+                                <% University.without_campus.order(:name).each do |un| %>
+                                    <li class="pure-menu-item">
+                                        <a class="pure-menu-link" href="/daily/<%= un.name%>">
+                                            <%= un.name %>
+                                        </a>
+                                    </li>
+                                    <% end %>
+                            </ul>
+                        </li>
+                        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Code</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <%= yield %>
         </div>
+
+        <footer class="is-center">
+            <p>Footer</p>
+        </footer>
     </div>
-
-    <%= yield %>
-
 </body>
 
 </html>

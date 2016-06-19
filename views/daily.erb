@@ -1,0 +1,40 @@
+<section class="container meals">
+    <h1>
+        <% if @university.campus? %>
+            <%= "#{@university.university.name} - #{@university.long_name}"  %>
+        <% else %>
+            <%= @university.long_name %>
+        <% end %>
+    </h1>
+    <h2><%= @date.strftime('%a - %m/%d/%Y') %></h2>
+
+    <% if !@meals.empty? %>
+        <div class="meals-table">
+        <a href='<%= "/daily/#{@university.name}?day=#{(@date - 1).strftime("%Y-%m-%d") }" %>/'><i class="fa fa-arrow-left"></i></a>
+    <div class="responsive-table">
+        <table class="pure-table pure-table-bordered">
+            <% if !(@meals.size == 1 && @meals[0].period == Period.both) %>
+                <thead>
+                    <% @meals.each do |meal| %>
+                        <th> <%= meal.period %> </th>
+                    <% end %>
+                </thead>
+            <% end %>
+            <% max_dishes = @meals.map(&:dishes).map(&:length).max %>
+            <% @meals.map(&:dishes).map { |dish| dish.values_at(0...max_dishes) }.transpose.each do |dishes| %>
+            <tr>
+                <% dishes.each do |dish| %>
+                <td><%= dish.name unless dish.nil?%></td>
+                <% end %>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+        <a href='<%= "/daily/#{@university.name}?day=#{(@date + 1).strftime("%Y-%m-%d") }" %>/'><i class="fa fa-arrow-right"></i></a>
+        </div>
+    <% else %>
+        <a href='<%= "/daily/#{@university.name}?day=#{(@date - 1).strftime("%Y-%m-%d") }" %>/'><i class="fa fa-arrow-left"></i></a>
+        <h3> No meals for this day. =`(</h3>
+        <a href='<%= "/daily/#{@university.name}?day=#{(@date + 1).strftime("%Y-%m-%d") }" %>/'><i class="fa fa-arrow-right"></i></a>
+    <% end %>
+</section>

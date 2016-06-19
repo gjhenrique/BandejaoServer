@@ -59,6 +59,11 @@ body .pure-g [class*="pure-u"] {
     border-radius: 5px;
 }
 
+.main-content {
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
 .home-menu {
     text-align: center;
 }
@@ -86,18 +91,26 @@ body .pure-g [class*="pure-u"] {
     color: #444444;
 }
 
-.home-menu li a:hover,
-.home-menu li a:focus {
+a:visited {
+    color: #444;
+}
+
+a:-webkit-any-link {
+    text-decoration:none;
+    color: #444;
+}
+
+
+a:hover {
     background: none;
     border: none;
-    color: #AECFE5;
+    color: #dd514c;
 }
 
 .splash-container {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), image-url('background.jpg') no-repeat center center;
     /* The following styles are required for the "scroll-over" effect */
     width: 100%;
-    padding-top: 80px;
 }
 
 .splash {
@@ -137,11 +150,10 @@ body .pure-g [class*="pure-u"] {
 }
 
 .content-wrapper {
-    /*position: absolute;
-    top: 700px;*/
     width: 100%;
-    min-height: 12%;
+    min-height: 100%;
     background: white;
+    position: relative;
 }
 
 .content-head {
@@ -158,10 +170,6 @@ body .pure-g [class*="pure-u"] {
 .ribbon {
     background: #2d3e50;
     color: #aaa;
-}
-
-.footer {
-    background: #111;
 }
 
 /* TABLET */
@@ -224,14 +232,14 @@ body .pure-g [class*="pure-u"] {
     vertical-align: middle;
 }
 
-.header {
+header {
     background: white;
     padding: 15px;
 }
 
 
 /* FF was not floating nav correctly with white-space: nowrap */
-.header * {
+header * {
     white-space: normal;
 }
 
@@ -328,7 +336,7 @@ body .pure-g [class*="pure-u"] {
     }
 }
 
-section {
+section.content {
     padding: 40px 0;
 }
 
@@ -393,4 +401,58 @@ section {
 
 .contact form {
     text-align: left;
+}
+
+.meals {
+    text-align: center;
+}
+
+.meals table thead {
+    text-align: center;
+    background-color: #dd514c;
+    color: white;
+}
+
+.meals .responsive-table {
+    margin: 0 30px;
+    display: inline-block;
+    /* Space to fit the arrows */
+    max-width: 80%;
+    overflow-x: auto;
+}
+
+.meals-table {
+    margin-top: 50px;
+    display: block;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.meals-table * {
+    vertical-align: middle;
+}
+
+footer {
+    background: #111;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+}
+
+footer p {
+    color: white;
+}
+
+html, body {
+    height: 100%;
+}
+
+.meals a:visited {
+    color: #444;
+}
+
+.meals h3 {
+    display: inline-block;
+    margin: 0 30px;
 }

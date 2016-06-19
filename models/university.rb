@@ -3,11 +3,15 @@ class University < ActiveRecord::Base
   has_many :universities
 
   def self.random
-    order('RANDOM()').first
+    order('RANDOM()')
+  end
+
+  def has_campus?
+    !universities.empty?
   end
 
   def campus?
-    universities.size > 0
+    !university.nil?
   end
 
   def main_name
@@ -24,5 +28,9 @@ class University < ActiveRecord::Base
 
   def self.find_campus
     where.not(id: University.select(:university_id).where.not(university_id: nil).uniq)
+  end
+
+  def self.without_campus
+    where(university_id: nil)
   end
 end
