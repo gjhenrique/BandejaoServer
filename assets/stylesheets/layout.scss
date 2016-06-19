@@ -358,14 +358,18 @@ section.content {
     font-size: 60px;
 }
 
+section.description-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .description {
     text-align: center;
-    text-transform: uppercase;
 }
 
 .description p strong {
     color: #dd514c;
-    font-size: 150%;
+    padding-right: 5px;
 }
 
 .description img {
@@ -373,7 +377,7 @@ section.content {
 }
 
 .contact {
-    margin-top: 40px;
+    padding-top: 20px;
     background-color: #dd514c;
 }
 
