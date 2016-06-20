@@ -1,8 +1,8 @@
 helpers do
   def link_date_navigator(university, date, &block)
-    result = link_navigator university, date - 1, 'fa-arrow-left'
+    result = link_navigator university, date - 1, 'fa-angle-left'
     result.concat(capture(&block))
-    result.concat link_navigator university, date + 1, 'fa-arrow-right'
+    result.concat link_navigator university, date + 1, 'fa-angle-right'
     @_out_buf.concat(result)
   end
 

@@ -20,8 +20,8 @@ class ParserJob
     end
 
     # Sending gcm
-    send_gcm_request university.main_name, log
-    send_gcm_request 'All', log
+    send_gcm_request university.main_name.downcase, log
+    send_gcm_request 'all', log
   end
 
   def self.send_gcm_request(topic, logger)

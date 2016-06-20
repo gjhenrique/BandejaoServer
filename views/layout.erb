@@ -1,4 +1,3 @@
-<!DOC>
 <!DOCTYPE html>
 <html>
 
@@ -38,9 +37,9 @@
         <header class="pure-menu pure-menu-horizontal pure-menu-fixed">
             <div class="container home-menu">
                 <a class="pure-menu-heading" href="/">
-                <img id="logo" src="<%= image_path('logo.png') %>"></img>
-                <span class="heading-title">Bandejao</span>
-            </a>
+                  <img id="logo" src="<%= image_path('logo.png') %>"></img>
+                  <span class="heading-title">Bandejao</span>
+                </a>
 
                 <button class="hamburger hamburger--collapse" id="menu-button" type="button">
                     <span class="hamburger-box">
@@ -49,11 +48,13 @@
                 </button>
 
                 <nav role="navigation" id="main-nav">
-                    <ul id="navigation" class="pure-menu-list">
-                        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+                    <ul id="navigation-list" class="pure-menu-list">
+                        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
                         <li class="pure-menu-item">
-                            <span>Universities</span>
-                            <i class="fa fa-chevron-down"></i>
+                            <a class="pure-menu-link">
+                              <span>Universities</span>
+                              <i class="fa fa-chevron-down"></i>
+                            </a>
                             <ul class="pure-menu-list">
                                 <% University.without_campus.order(:name).each do |un| %>
                                     <li class="pure-menu-item">
@@ -61,10 +62,32 @@
                                             <%= un.name %>
                                         </a>
                                     </li>
-                                    <% end %>
+                                <% end %>
                             </ul>
                         </li>
-                        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Code</a></li>
+                        <li class="pure-menu-item">
+                            <a class="pure-menu-link">
+                                <span>Code</span>
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                            <ul class="pure-menu-list">
+                              <li class="pure-menu-item">
+                                <a class="pure-menu-link" target="_blank" href="http://github.com">
+                                  Android
+                                </a>
+                              </li>
+                              <li class="pure-menu-item">
+                                  <a class="pure-menu-link" target="_blank" href="http://github.com">
+                                      Deploy
+                                  </a>
+                              </li>
+                              <li class="pure-menu-item">
+                                  <a class="pure-menu-link" target="_blank" href="http://github.com">
+                                      Server
+                                  </a>
+                              </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>

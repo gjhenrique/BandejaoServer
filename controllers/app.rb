@@ -18,17 +18,13 @@ end
 
 get '/daily/:university_name' do
   @university = University.by_name params[:university_name]
-
   halt(404, erb(:university_not_found)) if @university.nil?
-
   @university = University.random.where(university: @university).first if @university.has_campus?
-
   @date = if params[:day].nil?
             DateTime.now
           else
             DateTime.strptime(params[:day], '%Y-%m-%d')
           end
-
   @meals = Meal.daily @university, @date
   erb :daily
 end

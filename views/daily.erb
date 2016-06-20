@@ -6,20 +6,19 @@
             <%= @university.long_name %>
         <% end %>
     </h1>
-    <h2><%= @date.strftime('%a - %m/%d/%Y') %></h2>
+    <h2><%= @date.strftime('%A (%m/%d/%Y)') %></h2>
 
     <% if !@meals.empty? %>
     <div class="meals-table">
         <% link_date_navigator(@university, @date) do %>
             <div class="responsive-table">
                 <table class="pure-table pure-table-bordered">
-                    <% if !(@meals.size == 1 && @meals[0].period == Period.both) %>
-                        <thead>
-                            <% @meals.each do |meal| %>
-                                <th><%= meal.period %></th>
-                            <% end %>
-                        </thead>
-                    <% end %>
+                    <thead>
+                        <% @meals.each do |meal| %>
+                            <% period = (meal.period == Period.both) ? 'LAUNCH & DINNER' : meal.period %>
+                            <th><%= period %></th>
+                        <% end %>
+                    </thead>
                     <% group_dishes(@meals).each do |dishes| %>
                         <tr>
                             <% dishes.each do |dish| %>

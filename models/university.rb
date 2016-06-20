@@ -16,9 +16,9 @@ class University < ActiveRecord::Base
 
   def main_name
     if university.nil?
-      university.name
+      name
     else
-      university.university.name
+      university.name
     end
   end
 
