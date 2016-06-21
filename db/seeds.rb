@@ -12,7 +12,6 @@ Period.where(name: "LUNCH").first_or_create
 Period.where(name: "VEGETARIAN LUNCH").first_or_create
 Period.where(name: "DINNER").first_or_create
 Period.where(name: "VEGETARIAN DINNER").first_or_create
-
 # Lunch and Dinner
 Period.where(name: "BOTH").first_or_create
 
@@ -23,5 +22,6 @@ unicamp = University.where(name: "Unicamp", long_name: "Universidade de Campinas
 University.where(name: "COTUCA", long_name: "Campus COTUCA", class_name: "Parser::UnicampCotucaParser", university: unicamp).first_or_create
 University.where(name: "PFL", long_name: "Campus PFL", class_name: "Parser::UnicampPflParser", university: unicamp).first_or_create
 
-
 University.where(name: "UEM", long_name: "Universidade Estadual de Maringá", class_name: "Parser::UemParser").first_or_create
+
+University.where(name: "Cambridge", long_name: "Cambridge University", class_name: "Parser::CambridgeParser").first_or_create
