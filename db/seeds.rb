@@ -23,9 +23,5 @@ unicamp = University.where(name: "Unicamp", long_name: "Universidade de Campinas
 University.where(name: "COTUCA", long_name: "Campus COTUCA", class_name: "Parser::UnicampCotucaParser", university: unicamp).first_or_create
 University.where(name: "PFL", long_name: "Campus PFL", class_name: "Parser::UnicampPflParser", university: unicamp).first_or_create
 
-University.where(name: "UEM", long_name: "Universidade Estadual de Maringá", class_name: "Parser::UemParser").first_or_create
 
-ufsc = University.where(name: "UFSC", long_name: "Universidade Federal de Santa Catarina").first_or_create
-University.where(name: "Trindade", long_name: "Campus Trindade", class_name: "Parser::UfscTrindadeParser", university: ufsc).first_or_create
-University.where(name: "Ararangua", long_name: "Campus Araranguá", class_name: "Parser::UfscAraranguaParser", university: ufsc).first_or_create
-University.where(name: "CCA", long_name: "Campus CCA", class_name: "Parser::UfscCCAParser", university: ufsc).first_or_create
+University.where(name: "UEM", long_name: "Universidade Estadual de Maringá", class_name: "Parser::UemParser").first_or_create
