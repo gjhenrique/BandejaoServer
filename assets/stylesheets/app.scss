@@ -2,7 +2,13 @@
 //= require pure/grids-responsive
 //= require css-hamburgers
 
-//= require layout
+$text-color: #444;
+$main-color: #dd514c;
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+@import "layout";
+@import "header";
+@import "index";
+@import "meals";

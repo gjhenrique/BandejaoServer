@@ -1,4 +1,4 @@
-<section class="container meals">
+<section class="container meals is-center">
     <h1>
         <% if @university.campus? %>
             <%= "#{@university.university.name} - #{@university.long_name}"  %>
@@ -13,7 +13,7 @@
         <% link_date_navigator(@university, @date) do %>
             <div class="responsive-table">
                 <table class="pure-table pure-table-bordered">
-                    <thead>
+                    <thead class="is-center">
                         <% @meals.each do |meal| %>
                             <% period = (meal.period == Period.both) ? 'LAUNCH & DINNER' : meal.period %>
                             <th><%= period %></th>

@@ -1,0 +1,41 @@
+.meals {
+    i {
+        font-size: 200%;
+    }
+    table thead {
+        background-color: $main-color;
+        color: white;
+    }
+    .responsive-table {
+        margin: 0 30px;
+        display: inline-block;
+        /* Space to fit the arrows */
+        max-width: 80%;
+        overflow-x: auto;
+        @media (max-width: 48em) {
+            margin: 0 10px;
+            max-width: 70%;
+        }
+    }
+    .meals-table {
+        margin-top: 50px;
+        display: block;
+        width: 100%;
+        padding-bottom: 30px;
+        * {
+            vertical-align: middle;
+        }
+    }
+    .no-meals {
+        display: block;
+        margin-top: 50px;
+        h3 {
+            margin: 0 30px;
+            display: inline-block;
+        }
+        i {
+            font-size: 150%;
+            display: inline-block;
+        }
+    }
+}
