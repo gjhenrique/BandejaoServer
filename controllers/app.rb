@@ -41,7 +41,8 @@ get '/university/weekly/:university_name' do
     {
       name: un.name,
       long_name: un.long_name,
-      meals: Meal.weekly(un)
+      meals: Meal.weekly(un),
+      website: un.website
     }
   end
   json universities_dict

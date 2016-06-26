@@ -1,10 +1,14 @@
 .meals {
-    i {
-        font-size: 200%;
-    }
     table thead {
         background-color: $main-color;
         color: white;
+        text-align: center
+    }
+    .links {
+        i {
+            padding: 0 20px;
+            font-size: 250%;
+        }
     }
     .responsive-table {
         margin: 0 30px;
@@ -24,6 +28,9 @@
         padding-bottom: 30px;
         * {
             vertical-align: middle;
+        }
+        i {
+            font-size: 200%;
         }
     }
     .no-meals {

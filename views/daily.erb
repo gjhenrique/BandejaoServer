@@ -6,6 +6,17 @@
             <%= @university.long_name %>
         <% end %>
     </h1>
+
+    <div class="links">
+    <a href="<%= @university.website %>" target="_blank">
+        <i class="fa fa-globe"></i>
+    </a>
+
+    <a href="https://play.google.com/store/apps/details?id=br.uel.easymenu.<%= @university.main_name.downcase %>" target="_blank">
+        <i class="fa fa-android"></i>
+    </a>
+    </div>
+
     <h2><%= @date.strftime('%A (%m/%d/%Y)') %></h2>
 
     <% if !@meals.empty? %>

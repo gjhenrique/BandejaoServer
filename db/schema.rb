@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503123319) do
+ActiveRecord::Schema.define(version: 20160625202941) do
 
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160503123319) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "university_id"
+    t.text     "website"
   end
 
   add_index "universities", ["university_id"], name: "index_universities_on_university_id"

@@ -1,27 +1,28 @@
 # -*- coding: utf-8 -*-
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-Period.where(name: "BREAKFAST").first_or_create
-Period.where(name: "LUNCH").first_or_create
-Period.where(name: "VEGETARIAN LUNCH").first_or_create
-Period.where(name: "DINNER").first_or_create
-Period.where(name: "VEGETARIAN DINNER").first_or_create
+Period.where(name: 'BREAKFAST').first_or_create
+Period.where(name: 'LUNCH').first_or_create
+Period.where(name: 'VEGETARIAN LUNCH').first_or_create
+Period.where(name: 'DINNER').first_or_create
+Period.where(name: 'VEGETARIAN DINNER').first_or_create
 # Lunch and Dinner
-Period.where(name: "BOTH").first_or_create
+Period.where(name: 'BOTH').first_or_create
 
-University.where(name: "UFAC", long_name: "Universidade Federal do Acre", class_name: "Parser::UfacParser").first_or_create
-University.where(name: "UEL", long_name: "Universidade Estadual de Londrina", class_name: "Parser::UelParser").first_or_create
+University.where(name: 'UFAC',
+                        long_name: 'Universidade Federal do Acre',
+                        class_name: 'Parser::UfacParser',
+                        website: 'http://proplan.ufac.br/cardapio-ru/').first_or_create
 
-unicamp = University.where(name: "Unicamp", long_name: "Universidade de Campinas").first_or_create
-University.where(name: "COTUCA", long_name: "Campus COTUCA", class_name: "Parser::UnicampCotucaParser", university: unicamp).first_or_create
-University.where(name: "PFL", long_name: "Campus PFL", class_name: "Parser::UnicampPflParser", university: unicamp).first_or_create
+University.where(name: 'UEL',
+                 long_name: 'Universidade Estadual de Londrina',
+                 class_name: 'Parser::UelParser',
+                 website: 'http://www.uel.br/ru/pages/cardapio.php').first_or_create
 
-University.where(name: "UEM", long_name: "Universidade Estadual de Maringá", class_name: "Parser::UemParser").first_or_create
+University.where(name: 'UEM',
+                 long_name: 'Universidade Estadual de Maringá',
+                 class_name: 'Parser::UemParser',
+                 website: 'http://www.dct.uem.br/cardapio.htm').first_or_create
 
-University.where(name: "Cambridge", long_name: "Cambridge University", class_name: "Parser::CambridgeParser").first_or_create
+University.where(name: 'Cambridge',
+                 long_name: 'Cambridge University',
+                 class_name: 'Parser::CambridgeParser',
+                 website: 'http://www.unicen.cam.ac.uk/food-and-drink/main-dining-hall').first_or_create
