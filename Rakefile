@@ -17,7 +17,9 @@ end
 
 namespace :gcm do
   task :send_message, [:name] do |_, args|
-    ParserJob.send_gcm args[:name]
+    university = University.by_name args[:name]
+    logger = ParserLogger.new(university)
+    ParserJob.send_gcm_request university.main_name.downcase, logger
   end
 
   task :test_key do
