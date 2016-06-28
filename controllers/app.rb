@@ -31,7 +31,7 @@ end
 
 get '/university/weekly/:university_name' do
   university_name = params[:university_name]
-  if university_name.casecmp 'all'
+  if university_name.downcase ==  'all'
     universities = University.find_campus
   else
     university = University.by_name university_name
