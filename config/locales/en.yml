@@ -103,6 +103,9 @@ en:
       month: Month
       second: Seconds
       year: Year
+  messages:
+      contacts_saved: Thank you for your interest. We'll keep in touch with you!!!
+      contacts_error: It was not possible to send the contact information
   errors:
     format: "%{attribute} %{message}"
     messages:

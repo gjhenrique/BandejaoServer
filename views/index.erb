@@ -1,4 +1,5 @@
 <div class="splash-container">
+    <%= styled_flash %>
     <div class="splash container pure-g">
         <div class="splash-title pure-u-md-1-2 pure-u-1">
             <h1 class="splash-head">Bring mobility to your university cafeteria</h1>
@@ -61,21 +62,21 @@
             Do you wanna have your university included here? <br/>
             Send us the website that shows the menu and we will take care of the rest.
         </p>
-        <form class="pure-form">
+        <form action="/contact" method="POST" class="pure-form">
             <fieldset>
                 <div class="pure-u-1 pure-u-md-1-2 text-input">
                     <label for="name">Your Name</label>
-                    <input id="name" type="text" placeholder="Your Name">
+                    <input name="name" id="name" type="text" placeholder="Your Name">
                 </div>
 
                 <div class="pure-u-1 pure-u-md-1-2 text-input">
                     <label for="email">Your Email</label>
-                    <input id="email" type="email" placeholder="Your Email">
+                    <input name="email" id="email" type="email" placeholder="Your Email">
                 </div>
 
                 <div class="pure-u-1">
-                    <label for="description">Description</label>
-                    <textarea id="description" placeholder="More information about your university"></textarea>
+                    <label for="info">More Information</label>
+                    <textarea name="info" id="info" placeholder="More information about your university"></textarea>
                 </div>
 
                 <div class="pure-u-1 is-center">

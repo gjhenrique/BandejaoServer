@@ -23,6 +23,6 @@ University.where(name: 'UEM',
                  website: 'http://www.dct.uem.br/cardapio.htm').first_or_create
 
 University.where(name: 'Cambridge',
-                 long_name: 'Cambridge University',
+                 long_name: 'University of Cambridge',
                  class_name: 'Parser::CambridgeParser',
                  website: 'http://www.unicen.cam.ac.uk/food-and-drink/main-dining-hall').first_or_create

@@ -7,8 +7,8 @@ gem 'sinatra-activerecord'
 gem 'rake'
 gem 'whenever'
 gem 'sinatra-asset-pipeline'
-gem 'sass'
 gem 'sinatra-i18n'
+gem 'sinatra-flash'
 gem 'nokogiri'
 gem 'puma'
 gem 'gcm'
@@ -20,6 +20,9 @@ group :assets do
     gem 'rails-assets-css-hamburgers'
   end
   gem 'font-awesome-sass', '~> 4.6.2'
+
+  gem 'sass'
+  gem 'uglifier'
 end
 
 group :development, :test do

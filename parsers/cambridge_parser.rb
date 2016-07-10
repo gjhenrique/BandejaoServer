@@ -33,7 +33,6 @@ module Parser
         dish_text.gsub! 'Mains', ''
         dish_text.gsub! 'Desserts', ''
         dish_text.gsub! 'Soup of the day', 'Soup:'
-        dish_text.gsub! 'u0026', '&'
         dish_text = dish_text.squish.strip
         Dish.new(name: dish_text) unless dish_text.empty?
       end.compact

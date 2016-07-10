@@ -43,6 +43,21 @@
         color: white;
         letter-spacing: 0.1em;
     }
+    #flash {
+        padding-top: 30px;
+        text-align: center;
+        .flash {
+            border-radius: 5px;
+            padding: 10px;
+            display: inline-block;
+        }
+        .success {
+            background-color: green;
+        }
+        :not(success) {
+            background-color: red;
+        }
+    }
 }
 
 .feature {

@@ -47,3 +47,18 @@ get '/university/weekly/:university_name' do
   end
   json universities_dict
 end
+
+post '/contact' do
+  name = params[:name]
+  email = params[:email]
+  info = params[:info]
+  contact = Contact.create(name: name, email: email, info: info)
+  if contact.valid?
+    flash.now[:success] = I18n.t('messages.contacts_saved')
+  else
+    contact.errors.messages.each do |key, message|
+      flash.now[key] = key.capitalize.to_s + ' ' + message.join(', ')
+    end
+  end
+  erb :index
+end

@@ -7,6 +7,7 @@ require 'sinatra/activerecord'
 require 'sinatra/asset_pipeline'
 require 'sinatra/i18n'
 require 'sinatra/capture'
+require 'sinatra/flash'
 
 require 'rails-assets-pure'
 require 'rails-assets-css-hamburgers'
@@ -29,6 +30,11 @@ configure do
 
   Dotenv.load
 
+  # sinatra-flash setup
+  enable :sessions
+
+  set :assets_js_compressor, :uglifier
+  set :assets_css_compressor, :sass
   register Sinatra::AssetPipeline
   # Code based in https://github.com/rails-assets/rails-assets-sinatra
   if defined?(RailsAssets)
