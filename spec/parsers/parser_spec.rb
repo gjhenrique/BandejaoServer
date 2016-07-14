@@ -60,7 +60,6 @@ shared_examples 'a meal parser' do |options|
   end
 end
 
-RSpec.describe :uel_parser, type: :model do
-  it_behaves_like 'a meal parser', uni: 'uel'
+RSpec.describe :parsers, type: :model do
   it_behaves_like 'a meal parser', uni: 'ufac'
 end
