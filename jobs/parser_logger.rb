@@ -5,7 +5,11 @@ class ParserLogger
   def initialize(university)
     @university = university
     FileUtils.mkdir_p(DIR_LOG) unless File.directory?(DIR_LOG)
-    @logger = Logger.new("#{DIR_LOG}/#{university.name}.log")
+    if ENV['RACK_ENV'] == 'production'
+      @logger = Logger.new("#{DIR_LOG}/#{university.name}.log")
+    else
+      @logger = Logger.new(STDOUT)
+    end
     @logger.level = Logger::INFO
     @logger.formatter = proc do |severity, datetime, _, msg|
       date_format = datetime.strftime DATE_FORMAT
