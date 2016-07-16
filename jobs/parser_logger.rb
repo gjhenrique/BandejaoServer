@@ -5,7 +5,7 @@ class ParserLogger
   def initialize(university)
     @university = university
     FileUtils.mkdir_p(DIR_LOG) unless File.directory?(DIR_LOG)
-    if ENV['RACK_ENV'] == 'production'
+    if Sinatra::Application.is_production
       @logger = Logger.new("#{DIR_LOG}/#{university.name}.log")
     else
       @logger = Logger.new(STDOUT)
