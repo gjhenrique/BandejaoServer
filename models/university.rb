@@ -33,4 +33,12 @@ class University < ActiveRecord::Base
   def self.without_campus
     where(university_id: nil)
   end
+
+  def eql?(other)
+    other.name == name
+  end
+
+  def hash
+    name.hash
+  end
 end

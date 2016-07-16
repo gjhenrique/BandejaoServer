@@ -14,12 +14,10 @@ class ParserJob
     new_meals = synchronizer.sync_meals
     return if new_meals.nil?
 
-    # Persisting the new meals into the database
     ActiveRecord::Base.transaction do
       new_meals.map(&:save)
     end
 
-    # Sending gcm
     send_gcm_request university.main_name.downcase, log
     send_gcm_request 'all', log
   end

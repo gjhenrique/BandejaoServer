@@ -19,6 +19,7 @@ class Period < ActiveRecord::Base
     where(name: 'VEGETARIAN DINNER').first
   end
 
+  # Lunch and Dinner
   def self.both
     where(name: 'BOTH').first
   end

@@ -3,6 +3,7 @@ FactoryGirl.define do
     name 'PU'
     long_name 'Programming University'
     class_name 'PUParser'
+    website 'http://pu.org'
 
     trait :du do
       name 'DU'
