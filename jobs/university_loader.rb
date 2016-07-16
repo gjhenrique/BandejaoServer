@@ -38,18 +38,26 @@ class UniversityLoader
 
   def self.update_existing_universities(old_universities, new_universities)
     old_hash = Hash[old_universities.collect { |un| [un, un] }]
-    new_universities.each do |un|
-      old = old_hash[un]
+    new_universities.each do |new|
+      old = old_hash[new]
       next if old.nil?
-      if clean_attributes(old) != clean_attributes(un)
-        old.attributes = clean_attributes(un)
+      if clean_attributes(old) != clean_attributes(new)
+        old.attributes = clean_attributes(new)
         old.save
       end
 
-      if un.university != old.university
-        old.university = un.university
-        old.save
+      next if new.university == old.university
+
+      old.university = new.university
+      # If the new university does not have a parent anymore
+      if new.university.nil?
+        university = nil
+      else
+        # If the new university has a parent now
+        university = University.where(name: new.university.name).first
+        raise "University #{university.name} has to be persisted first" if university.nil?
       end
+      old.update(university: university)
     end
   end
 
