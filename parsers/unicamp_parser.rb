@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 module Parser
   class Unicamp
-    include Fetcher
-
     def translate_period(period_name)
       period_name = period_name.upcase
       if period_name == 'JANTAR'

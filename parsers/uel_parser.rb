@@ -1,7 +1,5 @@
 module Parser
   class UelParser
-    include Fetcher
-
     # This is a temporary workaround
     # In the future, we will use tesseract and friends to read from the image
     # Thanks, GuiaUEL.

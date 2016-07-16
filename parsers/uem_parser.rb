@@ -1,8 +1,5 @@
 module Parser
   class UemParser
-    include ParserHelper
-    include Fetcher
-
     URL = 'http://www.dct.uem.br/cardapio.htm'
 
     def parse

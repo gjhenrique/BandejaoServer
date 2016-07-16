@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 module Parser
   class UfacParser
-    include ParserHelper
-    include Fetcher
-
     URL = 'http://proplan.ufac.br/cardapio-ru/'
 
     def parse
