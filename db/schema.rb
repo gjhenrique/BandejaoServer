@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710010243) do
+ActiveRecord::Schema.define(version: 20160715193204) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160710010243) do
     t.text     "website"
   end
 
+  add_index "universities", ["name"], name: "index_universities_on_name", unique: true
   add_index "universities", ["university_id"], name: "index_universities_on_university_id"
 
 end
