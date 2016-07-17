@@ -29,7 +29,7 @@ get '/daily/:university_name' do
   erb :daily
 end
 
-get '/university/weekly/:university_name' do
+get '/weekly/university/:university_name' do
   university_name = params[:university_name]
   if university_name.downcase ==  'all'
     universities = University.find_campus
