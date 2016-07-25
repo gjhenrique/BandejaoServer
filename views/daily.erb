@@ -26,7 +26,7 @@
                 <table class="pure-table pure-table-bordered">
                     <thead class="is-center">
                         <% @meals.each do |meal| %>
-                            <% period = (meal.period == Period.both) ? 'LAUNCH & DINNER' : meal.period %>
+                            <% period = (meal.period == Period.both) ? 'LUNCH & DINNER' : meal.period %>
                             <th><%= period %></th>
                         <% end %>
                     </thead>
