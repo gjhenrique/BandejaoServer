@@ -1,3 +1,5 @@
+![](images/robot.png)
+
 Bandejao is a collaborative project that fetches and provides the weekly menu of university cafeterias through an API.
 
 Its prime objective is the easy inclusion of new university cafeterias.
@@ -7,7 +9,7 @@ Since the idea is to support many universities, the code has to be modular and g
 To illustrate, here is an overview of the components of this architecture:
 
 <br/>
-![](architecture.png)
+![](images/architecture.png)
 <br/>
 
 ### [Parsers](parsers/)
@@ -36,7 +38,7 @@ With an available API, the sky is the limit. We can have iOS, Android and web cl
 ## How to develop your own parser
 
 <br/>
-![](parser_highlight.png)
+![](images/parser_highlight.png)
 <br/>
 
 As an example, we are going to build a parser for a fake university (Programming University)
