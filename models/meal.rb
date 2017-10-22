@@ -1,4 +1,3 @@
-# coding: utf-8
 class Meal < ActiveRecord::Base
   has_many :dishes
   belongs_to :period

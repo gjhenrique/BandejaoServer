@@ -10,7 +10,6 @@ Installs the following software
 ## Capistrano
 * Database creation, migration and loading of seed data
 * Nginx setup and configuration file
-* Precompile assets 
 * Puma setup
 * Whenever cron jobs
 

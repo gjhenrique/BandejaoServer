@@ -3,40 +3,18 @@ after do
 end
 
 get '/' do
-  erb :index
-end
-
-get '/weekly/:university_name' do
-  @university = University.by_name params[:university_name]
-  if @university
-    @meals = Meal.weekly @university
-    @meals.to_json
-  else
-    halt 404, { error: 'University not found' }.to_json
-  end
-end
-
-get '/daily/:university_name' do
-  @university = University.by_name params[:university_name]
-  halt(404, erb(:university_not_found)) if @university.nil?
-  @university = University.random.where(university: @university).first if @university.has_campus?
-  @date = if params[:day].nil?
-            DateTime.now
-          else
-            DateTime.strptime(params[:day], '%Y-%m-%d')
-          end
-  @meals = Meal.daily @university, @date
-  erb :daily
+  json 'OK'
 end
 
 get '/weekly/university/:university_name' do
   university_name = params[:university_name]
-  if university_name.downcase ==  'all'
-    universities = University.find_campus
-  else
-    university = University.by_name university_name
-    universities = university.has_campus? ? university.universities : [university]
-  end
+  universities = if university_name.downcase == 'all'
+                   University.find_campus
+                 else
+                   university = University.by_name university_name
+                   university.has_campus? ? university.universities : [university]
+                 end
+
   universities_dict = universities.map do |un|
     {
       name: un.name,
@@ -46,19 +24,4 @@ get '/weekly/university/:university_name' do
     }
   end
   json universities_dict
-end
-
-post '/contact' do
-  name = params[:name]
-  email = params[:email]
-  info = params[:info]
-  contact = Contact.create(name: name, email: email, info: info)
-  if contact.valid?
-    flash.now[:success] = I18n.t('messages.contacts_saved')
-  else
-    contact.errors.messages.each do |key, message|
-      flash.now[key] = key.capitalize.to_s + ' ' + message.join(', ')
-    end
-  end
-  erb :index
 end
