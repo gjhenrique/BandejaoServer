@@ -81,8 +81,5 @@ tramp
 db/easymeal*
 db-prod/
 
-.sass-cache
-public/assets
-
-log/
+/log/
 .env
