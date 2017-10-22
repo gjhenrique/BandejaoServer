@@ -1,6 +1,6 @@
 require 'sinatra/activerecord/rake'
 require 'sinatra/asset_pipeline/task'
-require './app'
+require './bootstrap'
 
 Sinatra::AssetPipeline::Task.define! Sinatra::Application
 
