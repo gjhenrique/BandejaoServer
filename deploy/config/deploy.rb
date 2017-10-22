@@ -11,11 +11,11 @@ set :repo_url, 'https://github.com/gjhenrique/BandejaoServer.git'
 set :nginx_use_ssl, true if fetch(:stage) == :production
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/deploy/easy_meal_deploy'
+set :default_env, {
+  'RACK_ENV' => 'production'
+}
 
-set :rbenv_ruby, '2.2.3'
-set :rbenv_prefix, "RACK_ENV=production RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :deploy_to, '/home/deploy/easy_meal_deploy'
 
 set :rails_env, :production
 # Default value for :scm is :git
