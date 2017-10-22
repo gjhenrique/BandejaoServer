@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'easymeal_deploy'
 
-set :repo_url, 'git@gitlab.com:gjhenrique/EasyMenuWeb.git'
+set :repo_url, 'https://github.com/gjhenrique/BandejaoServer.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
