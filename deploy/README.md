@@ -1,10 +1,9 @@
-Configuration management and automation of provisioning and deploy for [BandejaoServer](https://github.com/gjhenrique/EasyMenuServer)
+Configuration management and automation of provisioning and deploy for [BandejaoServer](https://github.com/gjhenrique/BandejaoServer)
 
 Basically, we install software with Ansible and deploy our application with Capistrano
 
 ## Ansible
 Installs the following software
-* Rbenv
 * Monit
 * Nginx
 

@@ -148,8 +148,10 @@ Everything out of the box.
 Also, this is a collaborative project, so you don't need to host the server (only if you want it!).
 Just send a pull request and your university will be included in [bandejao.gjhenrique.com](https://bandejao.gjhenrique.com).
 
+## Deploy
+Check the [deploy folder](deploy/README.md) for deploying procedures
+
 ## Related projects
 
-* [Deploy](https://github.com/gjhenrique/BandejaoDeploy)
 * [Android](https://github.com/pedro-stanaka/cardapio-ru-uel)
 * iOS client - Don't know when. =P
