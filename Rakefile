@@ -1,8 +1,5 @@
 require 'sinatra/activerecord/rake'
-require 'sinatra/asset_pipeline/task'
 require './bootstrap'
-
-Sinatra::AssetPipeline::Task.define! Sinatra::Application
 
 namespace :parsers do
   task :parse_universities do
