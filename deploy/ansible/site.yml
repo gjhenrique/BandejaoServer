@@ -24,6 +24,15 @@
   tags:
     - pkgs
 
+- name: install git
+  sudo: true
+  hosts: all
+  user: deploy
+  tasks:
+    - apt: pkg=git state=latest update_cache=yes cache_valid_time=3600
+  tags:
+    - pkgs
+
 - name: install sqlite3
   sudo: true
   hosts: all
@@ -47,6 +56,7 @@
   hosts: all
   user: deploy
   tasks:
-    - apt: pkg=ruby2.3 state=latest update_cache=yes cache_valid_time=3600
+    - apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+      with_items: [ruby2.3, bundler, zlib1g-dev]
   tags:
     - ruby
