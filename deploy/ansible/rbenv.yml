@@ -1,5 +1,0 @@
-rbenv:
-  ruby_version: 2.2.3
-  env: user
-
-rbenv_users: [deploy]

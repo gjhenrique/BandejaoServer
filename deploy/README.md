@@ -6,7 +6,6 @@ Basically, we install software with Ansible and deploy our application with Capi
 Installs the following software
 * Rbenv
 * Monit
-* Rubinius
 * Nginx
 
 ## Capistrano
@@ -18,7 +17,7 @@ Installs the following software
 
 ## Staging environment with Vagrant
 ```
-    vagrant box add debian-jessie https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
+    ansible-galaxy install -r requirements.txt
     vagrant up
     # Ansible to install the required dependencies libraries and applications
     vagrant provision

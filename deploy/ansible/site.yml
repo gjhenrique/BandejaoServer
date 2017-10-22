@@ -13,8 +13,6 @@
   tags:
     - user
 
-# nginx configuration will be performed by capistrano
-# TODO: rbenv global too
 - name: install nginx
   sudo: true
   hosts: all
@@ -44,30 +42,11 @@
   tags:
     - monit
 
-- name: install rubinius dependencies
+- name: install ruby
   sudo: true
   hosts: all
   user: deploy
   tasks:
-    - apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
-      with_items: [build-essential, bison, ruby-dev, rake, zlib1g-dev,
-        libyaml-dev, libssl-dev, libreadline-dev, libncurses5-dev,
-        llvm, llvm-dev, libeditline-dev, libedit-dev]
-
+    - apt: pkg=ruby2.3 state=latest update_cache=yes cache_valid_time=3600
   tags:
-    - rbenv
-
-- name: install rbenv
-  hosts: all
-  user: deploy
-  vars_files:
-    - rbenv.yml
-  roles:
-    - zzet.rbenv
-  tags:
-    - rbenv
-
-
-# TODO:
-# Install nodejs for
-# Nginx main configuration file
+    - ruby
