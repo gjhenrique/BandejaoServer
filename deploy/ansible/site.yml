@@ -1,0 +1,73 @@
+- name: Create deploy user
+  sudo: true
+  hosts: all
+  tasks:
+    - name: create user deploy
+      user: name=deploy groups="sudo" shell=/bin/bash generate_ssh_key=yes
+
+    - name: Insert public key
+      authorized_key: user=deploy key="{{ authorized_rsa_key }}"
+
+    - name: change sudoers to contains NOPASSWD for sudo group
+      shell: "creates=/etc/sudoers.bak chdir=/etc cp sudoers sudoers.bak && sed -ri -e 's/(%sudo\\s+ALL=\\(ALL:ALL\\))\\s+ALL/\\1 NOPASSWD: ALL/' /etc/sudoers"
+  tags:
+    - user
+
+# nginx configuration will be performed by capistrano
+# TODO: rbenv global too
+- name: install nginx
+  sudo: true
+  hosts: all
+  user: deploy
+  tasks:
+    - apt: pkg=nginx-full state=latest update_cache=yes cache_valid_time=3600
+    - file: path=/etc/nginx/sites-available/default state=absent
+    - file: path=/etc/nginx/sites-enabled/default state=absent
+  tags:
+    - pkgs
+
+- name: install sqlite3
+  sudo: true
+  hosts: all
+  user: deploy
+  tasks:
+    - apt: pkg=libsqlite3-dev state=latest update_cache=yes cache_valid_time=3600
+  tags:
+    - pkgs
+
+- name: install monit
+  sudo: true
+  hosts: all
+  user: deploy
+  roles:
+    - ANXS.monit
+  tags:
+    - monit
+
+- name: install rubinius dependencies
+  sudo: true
+  hosts: all
+  user: deploy
+  tasks:
+    - apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+      with_items: [build-essential, bison, ruby-dev, rake, zlib1g-dev,
+        libyaml-dev, libssl-dev, libreadline-dev, libncurses5-dev,
+        llvm, llvm-dev, libeditline-dev, libedit-dev]
+
+  tags:
+    - rbenv
+
+- name: install rbenv
+  hosts: all
+  user: deploy
+  vars_files:
+    - rbenv.yml
+  roles:
+    - zzet.rbenv
+  tags:
+    - rbenv
+
+
+# TODO:
+# Install nodejs for
+# Nginx main configuration file
