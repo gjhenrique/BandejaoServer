@@ -1,0 +1,1 @@
+authorized_rsa_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

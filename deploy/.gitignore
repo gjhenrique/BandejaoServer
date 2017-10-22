@@ -1,0 +1,4 @@
+/ansible/.python-version
+/ansible/roles
+.vagrant
+.env
