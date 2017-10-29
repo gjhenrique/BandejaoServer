@@ -3,20 +3,6 @@ class Meal < ActiveRecord::Base
   belongs_to :period
   belongs_to :university
 
-  # We could override hash and eql? in the meal model
-  # There is a bug in the preloading of activities
-  # Call dishes inside hash overrided method duplicates associated objects
-  MealStruct = Struct.new(:meal_date, :period_id, :university_id, :dishes) do
-    def to_model
-      Meal.new(
-        meal_date: meal_date,
-        period: Period.find(period_id),
-        university: University.find(university_id),
-        dishes: dishes.map { |dish| Dish.new(name: dish) }
-      )
-    end
-  end
-
   DEFAULT_FILTER = "'+1 day',  'weekday 0', '-7 day'"
 
   scope :by_year, (lambda do |date|
@@ -31,7 +17,7 @@ class Meal < ActiveRecord::Base
                            "strftime('%W', date(meal_date, #{DEFAULT_FILTER}))", date.strftime('%Y-%m-%d'))
                    end)
 
-  scope :by_day, -> (date) { where('? = meal_date', date.strftime('%Y-%m-%d')) }
+  scope :by_day, ->(date) { where('? = meal_date', date.strftime('%Y-%m-%d')) }
 
   def self.weekly(university, date = DateTime.now)
     by_week(date).by_year(date).filter_by_date(university, date)
@@ -48,21 +34,12 @@ class Meal < ActiveRecord::Base
     meals.uniq { |meal| [meal.period_id, meal.meal_date] }
   end
 
-  def to_struct
-    MealStruct.new(
-      meal_date,
-      period.id,
-      university.id,
-      dishes.map(&:name)
-    )
-  end
-
   def as_json(_)
     { date: meal_date, period: period.name, dishes: dishes.map(&:name) }
   end
 
   def to_s
-    "Period: #{period} <-> meal_date: #{meal_date.strftime('#%Y-%M-%d')} " \
-      "<-> #{dishes.map(&:name) unless dishes.nil?}"
+    "{Period: #{period} <-> meal_date: #{meal_date.strftime('#%Y-%M-%d')} " \
+      "<-> #{dishes&.map(&:name)}}"
   end
 end
