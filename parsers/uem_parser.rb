@@ -1,6 +1,6 @@
 module Parser
   class UemParser
-    URL = 'http://www.dct.uem.br/cardapio.htm'
+    URL = 'http://www.dct.uem.br/cardapio.htm'.freeze
 
     def parse
       response = fetch_html URL, encoding: 'UTF-16'
@@ -17,14 +17,14 @@ module Parser
     def parse_date td
       date = td.text.squish
       date += "/#{Time.now.year}"
-      Date.strptime(date, "%d/%m/%Y")
+      Date.strptime(date, '%d/%m/%Y')
     end
 
     def parse_dishes td
       dishes = td.children.map do |td_text|
         Dish.new(name: td_text.text.squish)
       end
-      dishes.select { |dish| !dish.name.empty? }
+      dishes.reject { |dish| dish.name.empty? }
     end
   end
 end
