@@ -10,9 +10,7 @@ set :repo_url, 'https://github.com/gjhenrique/BandejaoServer.git'
 
 set :nginx_use_ssl, true if fetch(:stage) == :production
 
-set :default_env, {
-  'RACK_ENV' => 'production'
-}
+set :default_env, 'RACK_ENV' => 'production'
 
 set :deploy_to, '/home/deploy/easy_meal_deploy'
 

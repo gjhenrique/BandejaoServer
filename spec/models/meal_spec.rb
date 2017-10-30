@@ -1,7 +1,4 @@
-require File.expand_path '../../spec_helper.rb', __FILE__
-
-RSpec.describe Meal, type: :model do
-
+describe Meal, type: :model do
   let(:meals) do
     university = build(:meal).university
     date = DateTime.now.monday

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 module Parser
   class UfacParser
-    URL = 'http://proplan.ufac.br/cardapio-ru/'
+    include ParserHelper
+    include Fetcher
+
+    URL = 'http://proplan.ufac.br/cardapio-ru/'.freeze
 
     def parse
       doc = fetch_html URL
@@ -16,9 +19,9 @@ module Parser
 
     def extract_date(element)
       date = element.split(" de ")
-      index =  I18n.t("date.month_names", locale: "pt-BR").find_index(date[1])
-      date[1] = I18n.t("date.month_names", locale: "en")[index]
-      DateTime.strptime(date.join("/"), "%d/%B/%Y")
+      index = I18n.t('date.month_names', locale: 'pt-BR').find_index(date[1])
+      date[1] = I18n.t('date.month_names', locale: 'en')[index]
+      DateTime.strptime(date.join('/'), '%d/%B/%Y')
     end
 
     def extract_meals(li_list, meal_date)
@@ -38,7 +41,9 @@ module Parser
 
       dish_builder = proc { |li| Dish.new(name: li.text.squish) unless li.text.squish.empty? }
 
-      build_meal(li_list, meal_condition: meal_condition, meal_builder: meal_builder, dish_builder: dish_builder)
+      build_meal(li_list, meal_condition: meal_condition,
+                          meal_builder: meal_builder,
+                          dish_builder: dish_builder)
     end
   end
 end

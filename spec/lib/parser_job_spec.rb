@@ -1,6 +1,4 @@
-require File.expand_path '../../spec_helper.rb', __FILE__
-
-RSpec.describe ParserJob do
+describe ParserJob do
   it 'returns new meals from this week' do
     meals = sync_meals(build(:meal, :sunday), build(:meal, :monday))
     expect(meals.length).to eq(2)
@@ -41,6 +39,16 @@ RSpec.describe ParserJob do
     expect(meals.length).to eq(1)
   end
 
+  it 'returns without raising an exception' do
+    parser_stub = double('parser')
+    allow(parser_stub).to receive(:parse).and_raise('something went wrong')
+    allow(parser_stub).to receive(:resource).and_return instance_of(String) 
+    allow(App).to receive(:save_file).and_return nil
+
+    meal_sync = MealSynchronizer.new nil, parser_stub
+    expect { meal_sync.sync_meals }.not_to raise_error
+  end
+
   private
 
   def sync_meals(*meals)
@@ -48,9 +56,8 @@ RSpec.describe ParserJob do
     allow(parser_stub).to receive(:parse).and_return(meals)
 
     university = build(:meal).university
-    logger = double('logger').as_null_object
 
-    meal_sync = MealSynchronizer.new university, parser_stub, logger
+    meal_sync = MealSynchronizer.new university, parser_stub
     meal_sync.sync_meals
   end
 end

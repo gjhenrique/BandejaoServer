@@ -1,26 +1,27 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'sqlite3'
-gem 'sinatra-activerecord'
-gem 'rake'
-gem 'whenever'
-gem 'sinatra-i18n'
-gem 'nokogiri'
-gem 'puma'
-gem 'gcm'
 gem 'dotenv'
+gem 'gcm'
+gem 'nokogiri'
+gem 'puma', '~> 3.10.0'
+gem 'rake'
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'sinatra-contrib'
+gem 'i18n'
+gem 'sqlite3'
+gem 'syslogger'
+gem 'whenever'
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'byebug', platform: :mri
-  gem 'pry-byebug', platform: :mri
-
-  gem 'rspec'
-  gem 'factory_girl'
-  gem 'rack-test'
-  gem 'database_cleaner'
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl'
+  gem 'pry'
+  gem 'pry-byebug', platform: :mri
+  gem 'pry-doc'
+  gem 'rack-test'
+  gem 'rspec'
+  gem 'webmock'
+  gem 'vcr'
 end
