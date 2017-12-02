@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/json'
 require 'i18n'
 
 require 'dotenv'
