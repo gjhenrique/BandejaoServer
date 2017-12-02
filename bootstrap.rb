@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/json'
 require 'i18n'
-
+require 'rack/cors'
 require 'dotenv'
 
 require './app.rb'

@@ -65,6 +65,7 @@ GEM
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (1.6.4)
+    rack-cors (1.0.2)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -131,6 +132,7 @@ DEPENDENCIES
   pry-byebug
   pry-doc
   puma (~> 3.10.0)
+  rack-cors
   rack-test
   rake
   rspec
