@@ -1,4 +1,4 @@
-describe ParserJob do
+describe MealSynchronizer do
   it 'returns new meals from this week' do
     meals = sync_meals(build(:meal, :sunday), build(:meal, :monday))
     expect(meals.length).to eq(2)
@@ -42,10 +42,10 @@ describe ParserJob do
   it 'returns without raising an exception' do
     parser_stub = double('parser')
     allow(parser_stub).to receive(:parse).and_raise('something went wrong')
-    allow(parser_stub).to receive(:resource).and_return instance_of(String) 
+    allow(parser_stub).to receive(:resource).and_return instance_of(String)
     allow(App).to receive(:save_file).and_return nil
 
-    meal_sync = MealSynchronizer.new nil, parser_stub
+    meal_sync = described_class.new nil, parser_stub
     expect { meal_sync.sync_meals }.not_to raise_error
   end
 
@@ -57,7 +57,7 @@ describe ParserJob do
 
     university = build(:meal).university
 
-    meal_sync = MealSynchronizer.new university, parser_stub
+    meal_sync = described_class.new university, parser_stub
     meal_sync.sync_meals
   end
 end
