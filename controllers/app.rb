@@ -1,7 +1,3 @@
-after do
-  response.header['Content-Type'] += ';charset=utf-8' if response.header['Content-Type']
-end
-
 get '/' do
   json 'OK'
 end
