@@ -11,7 +11,7 @@ class MealSynchronizer
       html_meals = parser.parse
     rescue => exc
       App.logger.error "#{exc.class}, #{exc.message}, #{exc.backtrace.join "\n\t"}"
-      App.save_file parser.resource
+      App.save_file university, parser.resource
       return
     end
 

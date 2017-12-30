@@ -1,5 +1,7 @@
 module Parser
   class CambridgeParser
+    include Fetcher
+
     URL = 'http://www.unicen.cam.ac.uk/food-and-drink/main-dining-hall'
 
     def parse

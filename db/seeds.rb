@@ -7,4 +7,4 @@ Period.where(name: 'VEGETARIAN DINNER').first_or_create
 Period.where(name: 'BOTH').first_or_create
 
 seeds_file = File.join(settings.root, 'config', 'universities.yml')
-UniversityLoader.update_universities_from_file seeds_file
+UniversityLoader.update!(seeds_file)
