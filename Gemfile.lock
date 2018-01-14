@@ -31,6 +31,8 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.5.1)
+    declarative (0.0.10)
+    declarative-option (0.1.0)
     diff-lcs (1.2.5)
     dotenv (2.1.1)
     factory_girl (4.5.0)
@@ -71,6 +73,12 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.5.0)
+    representable (3.0.4)
+      declarative (< 0.1.0)
+      declarative-option (< 0.2.0)
+      uber (< 0.2.0)
+    roar (1.1.0)
+      representable (~> 3.0.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -106,6 +114,7 @@ GEM
     tilt (1.4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uber (0.1.0)
     vcr (3.0.3)
     webmock (3.0.1)
       addressable (>= 2.3.6)
@@ -135,6 +144,7 @@ DEPENDENCIES
   rack-cors
   rack-test
   rake
+  roar
   rspec
   sinatra
   sinatra-activerecord
@@ -146,4 +156,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
