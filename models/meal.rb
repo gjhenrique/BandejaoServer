@@ -3,28 +3,24 @@ class Meal < ActiveRecord::Base
   belongs_to :period
   belongs_to :university
 
-  DEFAULT_FILTER = "'+1 day',  'weekday 0', '-7 day'"
+  DEFAULT_FILTER = "'+1 day',  'weekday 0', '-7 day'".freeze
 
   scope :by_year, (lambda do |date|
     where("strftime('%Y', date(?, #{DEFAULT_FILTER})) = " \
-          "strftime('%Y', date(meal_date, #{DEFAULT_FILTER}))", date.strftime('%Y-%m-%d'))
+          "strftime('%Y', date(meal_date, #{DEFAULT_FILTER}))",
+          date.strftime('%Y-%m-%d'))
   end)
 
   # Sqlite uses ISO dates (begins at monday and finishes at sunday)
   # This workaround sums 1 day to fix this (begins at sunday and finishes at saturday).
   scope :by_week, (lambda do |date|
                      where("strftime('%W', date(?, #{DEFAULT_FILTER})) = " \
-                           "strftime('%W', date(meal_date, #{DEFAULT_FILTER}))", date.strftime('%Y-%m-%d'))
+                           "strftime('%W', date(meal_date, #{DEFAULT_FILTER}))",
+                           date.strftime('%Y-%m-%d'))
                    end)
-
-  scope :by_day, ->(date) { where('? = meal_date', date.strftime('%Y-%m-%d')) }
 
   def self.weekly(university, date = DateTime.now)
     by_week(date).by_year(date).filter_by_date(university, date)
-  end
-
-  def self.daily(university, date)
-    by_day(date).filter_by_date(university, date)
   end
 
   def self.filter_by_date(university, date)
@@ -34,12 +30,8 @@ class Meal < ActiveRecord::Base
     meals.uniq { |meal| [meal.period_id, meal.meal_date] }
   end
 
-  def as_json(_)
-    { date: meal_date, period: period.name, dishes: dishes.map(&:name) }
-  end
-
   def to_s
     "{Period: #{period} <-> meal_date: #{meal_date.strftime('#%Y-%M-%d')} " \
-      "<-> #{dishes&.map(&:name)}}"
+    "<-> #{dishes&.map(&:name)}}"
   end
 end
