@@ -2,23 +2,20 @@ get '/' do
   json 'OK'
 end
 
-get '/weekly/university/:university_name' do
-  university_name = params[:university_name]
-  universities = if university_name.casecmp 'all'
-                   University.find_campus
-                 else
-                   university = University.by_name university_name
-                   # TODO: Move to model
-                   university.has_campus? ? university.universities : [university]
-                 end
+get '/university' do
+  universities = University.find_campus
+  json UniversityRepresenter.represent(universities.to_a)
+end
 
-  universities_dict = universities.map do |un|
-    {
-      name: un.name,
-      long_name: un.long_name,
-      meals: Meal.weekly(un),
-      website: un.website
-    }
-  end
-  json universities_dict
+get '/university/:university_name' do
+  university = University.by_name params[:university_name]
+  json UniversityRepresenter.represent(university)
+end
+
+get '/weekly/meals/:university_name' do
+  university_name = params[:university_name]
+  university = University.by_name university_name
+  meals = Meal.weekly(university)
+
+  json MealRepresenter.represent(meals)
 end
