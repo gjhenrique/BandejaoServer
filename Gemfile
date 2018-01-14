@@ -7,12 +7,12 @@ gem 'nokogiri'
 gem 'puma', '~> 3.10.0'
 gem 'rack-cors'
 gem 'rake'
+gem 'roar'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-contrib'
 gem 'sqlite3'
 gem 'syslogger'
-gem 'roar'
 gem 'whenever'
 
 group :development, :test do
