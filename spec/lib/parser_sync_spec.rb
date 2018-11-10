@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe MealSynchronizer do
   it 'returns new meals from this week' do
     meals = sync_meals(build(:meal, :sunday), build(:meal, :monday))

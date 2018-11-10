@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/activerecord/rake'
 require './bootstrap'
 
@@ -9,6 +11,7 @@ namespace :parsers do
   task :parse_university, [:name] do |_, args|
     university = University.by_name args[:name]
     raise "There is no university with the name #{args[:name]}" if university.nil?
+
     ParserJob.parse_university university
   end
 end

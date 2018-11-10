@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Period < ActiveRecord::Base
   def self.breakfast
     where(name: 'BREAKFAST').first

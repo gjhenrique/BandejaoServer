@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Meal < ActiveRecord::Base
   has_many :dishes
   belongs_to :period
   belongs_to :university
 
-  DEFAULT_FILTER = "'+1 day',  'weekday 0', '-7 day'".freeze
+  DEFAULT_FILTER = "'+1 day',  'weekday 0', '-7 day'"
 
   scope :by_year, (lambda do |date|
     where("strftime('%Y', date(?, #{DEFAULT_FILTER})) = " \
@@ -23,7 +25,7 @@ class Meal < ActiveRecord::Base
     by_week(date).by_year(date).filter_by_date(university, date)
   end
 
-  def self.filter_by_date(university, date)
+  def self.filter_by_date(university, _date)
     meals = where(university: university)
             .order('meal_date, period_id, updated_at DESC')
             .includes(:dishes).to_a

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 set :environment_variable, 'RACK_ENV'
 set :output, error: 'log/parser_error.log', standard: 'log/parser_success.log'
 

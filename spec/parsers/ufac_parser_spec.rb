@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Parser::UfacParser, :vcr do
   it 'receives the correct meals for 2017-10-28' do
     expect(true).to be_truthy

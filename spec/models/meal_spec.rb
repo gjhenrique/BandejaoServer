@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Meal, type: :model do
   let(:meals) do
     university = build(:meal).university
@@ -6,7 +8,7 @@ describe Meal, type: :model do
   end
 
   context 'in same week' do
-    before(:each) do
+    before do
       setup_meals(:sunday, :monday, :outdated_monday)
     end
 
@@ -26,7 +28,7 @@ describe Meal, type: :model do
   end
 
   context 'in different week' do
-    before(:each) do
+    before do
       setup_meals(:previous_saturday, :monday, :this_saturday)
     end
 
@@ -41,7 +43,7 @@ describe Meal, type: :model do
   end
 
   context 'in different period' do
-    before(:each) do
+    before do
       create(:meal, :monday_dinner)
       setup_meals(:monday, :outdated_monday, :previous_saturday)
     end
@@ -52,7 +54,7 @@ describe Meal, type: :model do
   end
 
   context 'in different year' do
-    before(:each) do
+    before do
       setup_meals(:end_of_year, :beginning_of_year)
     end
 

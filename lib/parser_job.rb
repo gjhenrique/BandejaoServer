@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'gcm'
 
 class ParserJob
-  DEFAULT_UNIVERSITY_CLASS = 'Parser::%sParser'.freeze
+  DEFAULT_UNIVERSITY_CLASS = 'Parser::%sParser'
   class << self
     def parse_all
       University.find_campus.each { |university| parse_university university }

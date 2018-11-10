@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module Parser
   class Unicamp
     def translate_period(period_name)
@@ -14,7 +15,6 @@ module Parser
         Period.vegetarian_dinner
       end
     end
-
   end
 
   class UnicampCotucaParser < Unicamp
@@ -25,7 +25,7 @@ module Parser
 
       response['CARDAPIO'].map do |meal_json|
         meal = Meal.new
-        meal_json.each do |k,v|
+        meal_json.each do |k, v|
           if k == 'DATA'
             meal.meal_date = Date.strptime(v, '%Y-%m-%d')
           elsif k == 'TIPO'
@@ -45,13 +45,14 @@ module Parser
     def parse
       response = fetch_json URL
       return if response.key? 'erro'
+
       meals_response = response['cardapio'].nil? ? response : response['cardapio']
 
       meals_response.map do |meal_info|
         meal_filtered = meal_info.split(%r{<[BRbr]+\s+\/>})
-                        .select { |dish| !dish.empty? }
-                        .select { |dish| dish != 'OBSERVA&CCEDIL;&ATILDE;O:' }
-                        .map { |dish| dish.gsub(%r{(<STRONG>|<\/STRONG>)}, '') }
+                                 .reject(&:empty?)
+                                 .reject { |dish| dish == 'OBSERVA&CCEDIL;&ATILDE;O:' }
+                                 .map { |dish| dish.gsub(%r{(<STRONG>|<\/STRONG>)}, '') }
 
         period = translate_period meal_filtered[0]
         date = extract_date meal_filtered[1]
@@ -64,8 +65,8 @@ module Parser
     def extract_date(raw_date)
       date_list = raw_date.split(' DE ')
       index = I18n.t('date.month_names', locale: 'pt-BR')
-              .map { |month| month.upcase unless month.nil? }
-              .find_index(date_list[1])
+                  .map { |month| month&.upcase }
+                  .find_index(date_list[1])
       date_list[1] = I18n.t('date.month_names', locale: 'en')[index]
       DateTime.strptime(date_list.join('/'), '%d/%B/%Y')
     end

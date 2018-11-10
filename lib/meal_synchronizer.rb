@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MealSynchronizer
   attr_reader :university, :parser
 
@@ -9,7 +11,7 @@ class MealSynchronizer
   def sync_meals(meals = Meal.weekly(university))
     begin
       html_meals = parser.parse
-    rescue => exc
+    rescue StandardError => exc
       App.logger.error "#{exc.class}, #{exc.message}, #{exc.backtrace.join "\n\t"}"
       App.save_file university, parser.resource
       return

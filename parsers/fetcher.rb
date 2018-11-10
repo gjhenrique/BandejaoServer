@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'open-uri'
 require 'nokogiri'
@@ -15,6 +17,7 @@ module Parser
       response = Net::HTTP.post_form(URI.parse(url), {})
       @resource = response.body
       return nil if response.body.empty?
+
       JSON.parse response.body
     end
   end

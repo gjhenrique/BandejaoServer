@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'dotenv'
@@ -18,13 +20,14 @@ gem 'whenever'
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'pry'
   gem 'pry-byebug', platform: :mri
   gem 'pry-doc'
   gem 'rack-test'
   gem 'rspec'
   gem 'rubocop'
+  gem 'rubocop-rspec'
   gem 'vcr'
   gem 'webmock'
 end

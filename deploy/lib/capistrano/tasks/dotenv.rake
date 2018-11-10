@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Inspired in https://github.com/eduardodeoh/capistrano/blob/master/lib/capistrano/tasks/dotenv.rake
 namespace :deploy do
   namespace :dotenv do

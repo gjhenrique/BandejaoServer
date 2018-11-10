@@ -1,15 +1,16 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 module Parser
   class UfacParser
     include ParserHelper
     include Fetcher
 
-    URL = 'http://proplan.ufac.br/cardapio-ru/'.freeze
+    URL = 'http://proplan.ufac.br/cardapio-ru/'
 
     def parse
       doc = fetch_html URL
 
-      doc.css("ul.nav.nav-tabs li a").flat_map do |a|
+      doc.css('ul.nav.nav-tabs li a').flat_map do |a|
         meal_date = extract_date a.text
         id = a['href'].split('/').last
         li_list = doc.css("#{id} li")
@@ -18,7 +19,7 @@ module Parser
     end
 
     def extract_date(element)
-      date = element.split(" de ")
+      date = element.split(' de ')
       index = I18n.t('date.month_names', locale: 'pt-BR').find_index(date[1])
       date[1] = I18n.t('date.month_names', locale: 'en')[index]
       DateTime.strptime(date.join('/'), '%d/%B/%Y')
@@ -35,7 +36,8 @@ module Parser
 
       meal_builder = proc do |li|
         period = periods[li.text.squish]
-        fail Exception, "Period cannot be null #{b[0]}" if period.nil?
+        raise Exception, "Period cannot be null #{b[0]}" if period.nil?
+
         Meal.new(period: period, meal_date: meal_date)
       end
 

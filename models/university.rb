@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class University < ActiveRecord::Base
   belongs_to :university
   has_many :universities

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rack/test'
 require 'rspec'
-require 'factory_girl'
+require 'factory_bot'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'webmock'
@@ -8,7 +10,7 @@ require 'vcr'
 
 ENV['RACK_ENV'] = 'test'
 
-require File.expand_path '../../bootstrap.rb', __FILE__
+require File.expand_path '../bootstrap.rb', __dir__
 
 # Don't print anything within tests
 App.logger.level = Logger::Severity::UNKNOWN if App.test?
@@ -23,8 +25,8 @@ end
 
 Capybara.app = Sinatra::Application
 
-FactoryGirl.definition_file_paths = [File.expand_path('../factories', __FILE__)]
-FactoryGirl.find_definitions
+FactoryBot.definition_file_paths = [File.expand_path('factories', __dir__)]
+FactoryBot.find_definitions
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
@@ -35,20 +37,20 @@ end
 RSpec.configure do |c|
   c.include RSpecMixin
 
-  c.include FactoryGirl::Syntax::Methods
+  c.include FactoryBot::Syntax::Methods
   c.include Capybara::DSL
 
   c.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
 
-    FactoryGirl.create(:period, :both)
-    FactoryGirl.create(:period, :breakfast)
-    FactoryGirl.create(:period, :lunch)
-    FactoryGirl.create(:period, :dinner)
+    FactoryBot.create(:period, :both)
+    FactoryBot.create(:period, :breakfast)
+    FactoryBot.create(:period, :lunch)
+    FactoryBot.create(:period, :dinner)
   end
 
-  c.around(:each) do |test|
+  c.around do |test|
     DatabaseCleaner.cleaning do
       test.run
     end

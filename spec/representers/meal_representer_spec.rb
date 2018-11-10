@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe MealRepresenter do
   it 'renders element correctly' do
     dishes = build_stubbed_list(:dish, 4)

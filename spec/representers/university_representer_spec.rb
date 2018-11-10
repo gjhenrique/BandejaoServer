@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe UniversityRepresenter do
   it 'renders a single element correctly' do
     un = build_stubbed(:university)

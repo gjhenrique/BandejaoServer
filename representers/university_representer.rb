@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UniversityRepresenter < Roar::Decorator
   include Roar::JSON
 

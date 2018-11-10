@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 Period.where(name: 'BREAKFAST').first_or_create
 Period.where(name: 'LUNCH').first_or_create
 Period.where(name: 'VEGETARIAN LUNCH').first_or_create

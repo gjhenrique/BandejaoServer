@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe UniversityLoader do
   def load_fixture(name)
     "#{File.dirname(__FILE__)}/../fixtures/#{name}.yml"
@@ -7,7 +9,7 @@ describe UniversityLoader do
   let(:fixture2) { load_fixture 'test2' }
 
   it 'builds universities from seeds file' do
-    UniversityLoader.update! fixture1
+    described_class.update! fixture1
     first = University.first
     second = University.second
 
@@ -19,8 +21,8 @@ describe UniversityLoader do
   end
 
   it 'does not duplicate universities' do
-    UniversityLoader.update!(fixture1)
-    UniversityLoader.update!(fixture1)
+    described_class.update!(fixture1)
+    described_class.update!(fixture1)
 
     expect(University.count).to eq(2)
   end
@@ -31,14 +33,14 @@ describe UniversityLoader do
 
     expect(University.find_by(name: name)).not_to be_nil
 
-    UniversityLoader.update!(fixture1)
+    described_class.update!(fixture1)
 
     expect(University.find_by(name: name)).to be_nil
   end
 
   it 'updates attributes correctly' do
-    UniversityLoader.update! fixture1
-    UniversityLoader.update! fixture2
+    described_class.update! fixture1
+    described_class.update! fixture2
 
     first = University.find_by(name: 'PU')
     second = University.find_by(name: 'DU')
