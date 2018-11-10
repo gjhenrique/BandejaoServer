@@ -72,9 +72,6 @@ tramp
 # cask packages
 .cask/
 
-# server auth directory
-/server/
-
 # Custom
 db/easymeal*
 db-prod/
