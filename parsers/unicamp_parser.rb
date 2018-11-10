@@ -61,14 +61,14 @@ module Parser
       end
     end
 
-    # CONVERT 10 DE MAIO DE 2016 to DateTime(2016-05-10)
+    # CONVERT 10 DE MAIO DE 2016 to Time(2016-05-10)
     def extract_date(raw_date)
       date_list = raw_date.split(' DE ')
       index = I18n.t('date.month_names', locale: 'pt-BR')
                   .map { |month| month&.upcase }
                   .find_index(date_list[1])
       date_list[1] = I18n.t('date.month_names', locale: 'en')[index]
-      DateTime.strptime(date_list.join('/'), '%d/%B/%Y')
+      Time.strptime(date_list.join('/'), '%d/%B/%Y')
     end
   end
 end

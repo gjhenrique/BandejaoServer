@@ -40,7 +40,7 @@ class MealSynchronizer
 
   # Function in the ParserJob class to don't need to monkey patch the array function
   def filter_meals(html_meals, other_meals)
-    html_meals.select! { |meal| same_week?(meal.meal_date, DateTime.now) }
+    html_meals.select! { |meal| same_week?(meal.meal_date, Time.now) }
 
     html_meals_struct = html_meals.map(&method(:to_hash))
     other_meals_struct = other_meals.map(&method(:to_hash))

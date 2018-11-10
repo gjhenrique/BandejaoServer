@@ -21,7 +21,7 @@ class Meal < ActiveRecord::Base
                            date.strftime('%Y-%m-%d'))
                    end)
 
-  def self.weekly(university, date = DateTime.now)
+  def self.weekly(university, date = Time.now)
     by_week(date).by_year(date).filter_by_date(university, date)
   end
 

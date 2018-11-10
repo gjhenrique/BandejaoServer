@@ -26,7 +26,7 @@ module App
     # In the real world, we would send this to S3
     dir_files = "#{root}/log/parsers/#{university.name}-files"
     FileUtils.mkdir_p(dir_files) unless File.directory? dir_files
-    date_format = DateTime.now.strftime('%Y-%m-%d_%H:%M:%S')
+    date_format = Time.now.strftime('%Y-%m-%d_%H:%M:%S')
     File.write "#{dir_files}/#{date_format}", content.to_s
   end
 end

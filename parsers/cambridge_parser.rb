@@ -25,7 +25,7 @@ module Parser
 
     def parse_range(week, days)
       initial_date_text = week.text.split(' ')[2]
-      date = DateTime.strptime(initial_date_text, '%d/%m/%Y')
+      date = Time.strptime(initial_date_text, '%d/%m/%Y')
       date..(date + days - 1)
     end
 

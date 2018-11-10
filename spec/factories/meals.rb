@@ -2,41 +2,41 @@
 
 FactoryBot.define do
   factory :meal do
-    meal_date { DateTime.now.monday }
+    meal_date { Time.now.monday }
 
     period { Period.lunch || association(:period, :lunch) }
 
     university { University.where(name: build(:university).name).first || association(:university) }
 
     trait :previous_saturday do
-      meal_date { DateTime.now.monday - 2 }
+      meal_date { Time.now.monday - 2 }
     end
 
     trait :monday do
-      meal_date { DateTime.now.monday }
-      updated_at { DateTime.now.monday }
+      meal_date { Time.now.monday }
+      updated_at { Time.now.monday }
     end
 
     trait :sunday do
-      meal_date { DateTime.now.monday - 1 }
+      meal_date { Time.now.monday - 1 }
     end
 
     trait :outdated_monday do
-      meal_date { DateTime.now.monday }
-      updated_at { DateTime.now.monday - 1 }
+      meal_date { Time.now.monday }
+      updated_at { Time.now.monday - 1 }
     end
 
     trait :this_saturday do
-      meal_date { DateTime.now.monday + 5 }
+      meal_date { Time.now.monday + 5 }
     end
 
     trait :monday_dinner do
-      meal_date { DateTime.now.monday }
+      meal_date { Time.now.monday }
       period { Period.dinner || association(:period, :dinner) }
     end
 
     trait :next_monday do
-      meal_date { DateTime.now.monday + 7 }
+      meal_date { Time.now.monday + 7 }
     end
 
     trait :meals_with_fake_dishes do

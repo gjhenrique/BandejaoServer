@@ -113,7 +113,7 @@ module Parser
         # For the html, the date is always in the first column
         html_date = tds.first.text
         # Cast from string to Ruby object
-        date = DateTime.strptime html_date, '%M/%d'
+        date = Time.strptime html_date, '%M/%d'
 
         # We iterate over the rest of the columns to get the dishes
         dishes = tds[1..-1].map do |html_dish|

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-describe Meal, type: :model do
+describe Meal do
   let(:meals) do
     university = build(:meal).university
-    date = DateTime.now.monday
-    Meal.weekly university, date
+    date = Time.now.monday
+    described_class.weekly university, date
   end
 
-  context 'in same week' do
+  context 'when in same week' do
     before do
       setup_meals(:sunday, :monday, :outdated_monday)
     end
@@ -23,12 +23,12 @@ describe Meal, type: :model do
 
     it 'discards outdated meal' do
       monday = build(:meal, :monday)
-      pending("investigate why this is faling")
+      pending('investigate why this is faling')
       expect(meals.last.updated_at.strftime('%Y-%m-%d')).to eq(monday.updated_at.strftime('%Y-%m-%d'))
     end
   end
 
-  context 'in different week' do
+  context 'with different weeks' do
     before do
       setup_meals(:previous_saturday, :monday, :this_saturday)
     end
@@ -43,7 +43,7 @@ describe Meal, type: :model do
     end
   end
 
-  context 'in different period' do
+  context 'with different periods' do
     before do
       create(:meal, :monday_dinner)
       setup_meals(:monday, :outdated_monday, :previous_saturday)
@@ -54,7 +54,7 @@ describe Meal, type: :model do
     end
   end
 
-  context 'in different year' do
+  context 'with different years' do
     before do
       setup_meals(:end_of_year, :beginning_of_year)
     end
@@ -69,7 +69,7 @@ describe Meal, type: :model do
 
     def check_meal(trait)
       meal = build(:meal, trait)
-      meals = Meal.weekly(meal.university, meal.meal_date)
+      meals = described_class.weekly(meal.university, meal.meal_date)
       expect(meals.size).to eq(2)
     end
   end
@@ -79,7 +79,7 @@ describe Meal, type: :model do
       meal = create(:meal, :one_dish)
       meal.dishes << build(:dish, :rice)
 
-      meals = Meal.includes(:dishes).to_a
+      meals = described_class.includes(:dishes).to_a
       expect(meals.first.dishes.size).to eq(2)
     end
   end

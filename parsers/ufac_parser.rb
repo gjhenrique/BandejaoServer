@@ -22,7 +22,7 @@ module Parser
       date = element.split(' de ')
       index = I18n.t('date.month_names', locale: 'pt-BR').find_index(date[1])
       date[1] = I18n.t('date.month_names', locale: 'en')[index]
-      DateTime.strptime(date.join('/'), '%d/%B/%Y')
+      Time.strptime(date.join('/'), '%d/%B/%Y')
     end
 
     def extract_meals(li_list, meal_date)

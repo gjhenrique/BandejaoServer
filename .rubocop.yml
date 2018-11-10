@@ -3,6 +3,12 @@ require: rubocop-rspec
 Metrics/LineLength:
   Max: 120
 
+Metrics/BlockLength:
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'spec/**/*.rb'
+
 Style:
   Documentation:
     Enabled: false

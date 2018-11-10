@@ -15,7 +15,7 @@ module Parser
       trs[1..-1].map do |meal_tr|
         meal_tds = meal_tr.children.reject { |item| item.text.squish.empty? }
         date_text = meal_tds[0].text.split(' ').last
-        date = DateTime.strptime(date_text, '%d/%m')
+        date = Time.strptime(date_text, '%d/%m')
         dishes = meal_tds[1..-1].each_with_index.map do |dish_td, i|
           if i == 3
             Dish.new(name: 'Prato Vegetariano: ' + dish_td.text)
