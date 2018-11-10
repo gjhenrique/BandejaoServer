@@ -31,9 +31,4 @@ class Meal < ActiveRecord::Base
             .includes(:dishes).to_a
     meals.uniq { |meal| [meal.period_id, meal.meal_date] }
   end
-
-  def to_s
-    "{Period: #{period} <-> meal_date: #{meal_date.strftime('#%Y-%M-%d')} " \
-    "<-> #{dishes&.map(&:name)}}"
-  end
 end
