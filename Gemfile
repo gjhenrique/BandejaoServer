@@ -23,8 +23,8 @@ group :development, :test do
   gem 'pry-byebug', platform: :mri
   gem 'pry-doc'
   gem 'rack-test'
-  gem 'rubocop'
   gem 'rspec'
+  gem 'rubocop'
   gem 'vcr'
   gem 'webmock'
 end
