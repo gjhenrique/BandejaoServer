@@ -158,7 +158,6 @@ DEPENDENCIES
   gcm
   i18n
   nokogiri
-  pry
   pry-byebug
   pry-doc
   puma (~> 3.10.0)

@@ -21,7 +21,6 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_bot'
-  gem 'pry'
   gem 'pry-byebug', platform: :mri
   gem 'pry-doc'
   gem 'rack-test'
