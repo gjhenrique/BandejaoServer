@@ -26,3 +26,21 @@ namespace :gcm do
     puts ENV['GCM_KEY']
   end
 end
+
+namespace :db do
+  Sequel.extension :migration
+  Dotenv.load
+  DB = Sequel.connect(ENV['DATABASE_URL'])
+
+  task :new_migrate do
+    Sequel::Migrator.run(DB, 'migrations')
+    Rake::Task['db:version'].execute
+  end
+
+  desc 'Perform migration reset (full rollback and migration)'
+  task :new_reset do
+    Sequel::Migrator.run(DB, 'migrations', target: 0)
+    Sequel::Migrator.run(DB, 'migrations')
+    Rake::Task['db:version'].execute
+  end
+end

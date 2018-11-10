@@ -8,6 +8,7 @@ require 'roar/json'
 require 'i18n'
 require 'rack/cors'
 require 'dotenv'
+require 'sequel'
 
 require './app.rb'
 
