@@ -4,11 +4,7 @@ Metrics/LineLength:
   Max: 120
 
 Metrics/BlockLength:
-  Exclude:
-    - 'Gemfile'
-    - 'Rakefile'
-    - 'db/**/*'
-    - 'spec/**/*.rb'
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
