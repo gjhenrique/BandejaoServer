@@ -19,4 +19,6 @@ Dir.glob('./jobs/*.rb') { |file| require file }
 Dir.glob('./controllers/*.rb') { |file| require file }
 Dir.glob('./representers/*.rb') { |file| require file }
 
+Dir.glob('./repositories/*.rb') { |file| require file }
+
 require './parsers/parsers'
