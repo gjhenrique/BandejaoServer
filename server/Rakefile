@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'sinatra/activerecord/rake'
+# require 'sinatra/activerecord/rake'
+require 'rom/sql/rake_task'
 require './bootstrap'
 
 namespace :parsers do
@@ -16,13 +17,9 @@ namespace :parsers do
   end
 end
 
-namespace :gcm do
-  task :send_message, [:name] do |_, args|
-    university = University.by_name args[:name]
-    ParserJob.send_gcm_request university.main_name
-  end
-
-  task :test_key do
-    puts ENV['GCM_KEY']
+namespace :db do
+  task :setup do
+    Dotenv.load
+    ROM::SQL::RakeSupport.env = ROM::Configuration.new(:sql, ENV['DATABASE_URL'])
   end
 end

@@ -7,6 +7,7 @@ Metrics/BlockLength:
   Exclude:
     - 'Gemfile'
     - 'Rakefile'
+    - 'db/**/*'
     - 'spec/**/*.rb'
 
 Style/Documentation:

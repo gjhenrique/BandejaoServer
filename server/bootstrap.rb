@@ -8,7 +8,8 @@ require 'roar/json'
 require 'i18n'
 require 'rack/cors'
 require 'dotenv'
-require 'sequel'
+require 'ruby_event_store-rom'
+require 'rom-sql'
 
 require './app.rb'
 
